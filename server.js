@@ -1,9 +1,13 @@
 const express = require("express");
+const bodyParser = require("body-parser");
+const connectDB = require("./config/db");
 
 const app = express();
 
-// init middleware
-app.use(express.json({ extended: false }));
+// connect database
+connectDB();
+
+app.use(bodyParser.json({ extended: false }));
 
 app.get("/", (req, res) => res.send("API running"));
 
