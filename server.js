@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const connectDB = require("./config/db");
+const { connectDB } = require("./config/db");
 
 const app = express();
 
@@ -10,6 +10,9 @@ connectDB();
 app.use(bodyParser.json({ extended: false }));
 
 app.get("/", (req, res) => res.send("API running"));
+
+// Routes
+app.use("/api/user", require("./routes/user"));
 
 const PORT = process.env.PORT || 5000;
 
