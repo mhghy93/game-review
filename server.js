@@ -7,7 +7,7 @@ const app = express();
 // connect database
 connectDB();
 
-app.use(bodyParser.json({ extended: false }));
+app.use(bodyParser.json());
 
 app.get("/", (req, res) => res.send("API running"));
 

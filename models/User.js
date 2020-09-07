@@ -32,10 +32,6 @@ const User = db.define("User", {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
-  createdOn: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
-  },
 });
 
 User.sync();
