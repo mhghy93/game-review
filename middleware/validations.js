@@ -17,6 +17,16 @@ const loginUserValidations = () => {
   ];
 };
 
+const gameValidations = () => {
+  return [
+    check("title", "Title is required").not().isEmpty(),
+    check("description", "Description is required").not().isEmpty(),
+    check("displayPic", "Display Pic is required").not().isEmpty(),
+    check("trailerLink", "Trailer Link is required").not().isEmpty(),
+    check("category", "Category is required").not().isEmpty(),
+  ];
+};
+
 const validate = (req, res, next) => {
   const errors = validationResult(req);
   if (errors.isEmpty()) {
@@ -28,5 +38,6 @@ const validate = (req, res, next) => {
 module.exports = {
   registerUserValidations,
   loginUserValidations,
+  gameValidations,
   validate,
 };
