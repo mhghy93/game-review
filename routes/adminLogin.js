@@ -8,16 +8,7 @@ const userController = require("../controllers/User");
 const router = express.Router();
 
 router.post(
-  "/register",
-  registerUserValidations(),
-  validate,
-  userController.register
-);
-
-router.post("/login", loginUserValidations(), validate, userController.login);
-
-router.post(
-  "/admin/login",
+  "/login",
   loginUserValidations(),
   validate,
   userController.adminLogin

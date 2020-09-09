@@ -13,6 +13,7 @@ app.get("/", (req, res) => res.send("API running"));
 
 // Routes
 app.use("/api/user", require("./routes/user"));
+app.use("/api/admin", require("./routes/adminLogin"));
 app.use("/api/game", require("./routes/game"));
 
 const PORT = process.env.PORT || 5000;
