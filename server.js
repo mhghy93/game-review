@@ -9,8 +9,6 @@ connectDB();
 
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => res.send("API running"));
-
 // Routes
 app.use("/api/user", require("./routes/user"));
 app.use("/api/admin", require("./routes/adminLogin"));

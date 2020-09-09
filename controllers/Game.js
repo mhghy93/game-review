@@ -1,8 +1,24 @@
 const Game = require("../models/Game");
 
-exports.getAllGames = (req, res) => {};
+exports.getAllGames = async (req, res) => {
+  try {
+    const games = await Game.findAll();
+    res.json(games);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
 
-exports.getGameDetail = (req, res) => {};
+exports.getGameDetail = async (req, res) => {
+  try {
+    const game = await Game.findOne({ where: { id: req.params.id } });
+    res.json(game);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
 
 exports.addGame = async (req, res) => {
   const { title, description, displayPic, trailerLink, category } = req.body;

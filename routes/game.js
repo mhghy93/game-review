@@ -1,5 +1,5 @@
 const express = require("express");
-const router = require("./user");
+const router = express.Router();
 const { isAuthorized, isAdmin } = require("../middleware/auth");
 const { gameValidations, validate } = require("../middleware/validations");
 const gameController = require("../controllers/Game");
@@ -19,11 +19,18 @@ router.post(
 
 router.put(
   "/admin/edit/:id",
+  isAuthorized,
+  isAdmin,
   gameValidations(),
   validate,
   gameController.editGame
 );
 
-router.delete("/admin/delete:id", gameController.deleteGame);
+router.delete(
+  "/admin/delete:id",
+  isAuthorized,
+  isAdmin,
+  gameController.deleteGame
+);
 
 module.exports = router;
