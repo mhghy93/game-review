@@ -13,7 +13,7 @@ const Game = db.define("Game", {
     allowNull: false,
   },
   description: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   displayPic: {
