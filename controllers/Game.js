@@ -21,7 +21,14 @@ exports.getGameDetail = async (req, res) => {
 };
 
 exports.addGame = async (req, res) => {
-  const { title, description, displayPic, trailerLink, category } = req.body;
+  const {
+    title,
+    description,
+    displayPic,
+    trailerLink,
+    category,
+    platform,
+  } = req.body;
 
   try {
     const game = await Game.create({
@@ -30,6 +37,7 @@ exports.addGame = async (req, res) => {
       displayPic,
       trailerLink,
       category,
+      platform,
     });
 
     res.json(game);
@@ -39,6 +47,33 @@ exports.addGame = async (req, res) => {
   }
 };
 
-exports.editGame = (req, res) => {};
+exports.editGame = async (req, res) => {
+  try {
+    const {
+      title,
+      description,
+      displayPic,
+      trailerLink,
+      category,
+      platform,
+    } = req.body;
+
+    const game = await Game.update(
+      {
+        title: title,
+        description: description,
+        displayPic: displayPic,
+        trailerLink: trailerLink,
+        category: category,
+        platform: platform,
+      },
+      { where: { id: req.params.id } }
+    );
+    res.json({ msg: "Successfully updated row " + game });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
 
 exports.deleteGame = (req, res) => {};

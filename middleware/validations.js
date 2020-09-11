@@ -24,6 +24,7 @@ const gameValidations = () => {
     check("displayPic", "Display Pic is required").not().isEmpty(),
     check("trailerLink", "Trailer Link is required").not().isEmpty(),
     check("category", "Category is required").not().isEmpty(),
+    check("platform", "Platform is required").not().isEmpty(),
   ];
 };
 
