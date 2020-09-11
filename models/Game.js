@@ -28,6 +28,10 @@ const Game = db.define("Game", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  platform: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 });
 
 Game.sync();
