@@ -58,7 +58,7 @@ exports.editGame = async (req, res) => {
       platform,
     } = req.body;
 
-    const game = await Game.update(
+    await Game.update(
       {
         title: title,
         description: description,
@@ -69,11 +69,19 @@ exports.editGame = async (req, res) => {
       },
       { where: { id: req.params.id } }
     );
-    res.json({ msg: "Successfully updated row " + game });
+    res.json({ msg: "Successfully updated" });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
   }
 };
 
-exports.deleteGame = (req, res) => {};
+exports.deleteGame = async (req, res) => {
+  try {
+    await Game.destroy({ where: { id: req.params.id } });
+    res.json({ msg: "Game Deleted" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};

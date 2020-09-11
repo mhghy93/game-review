@@ -27,7 +27,7 @@ router.put(
 );
 
 router.delete(
-  "/admin/delete:id",
+  "/admin/delete/:id",
   isAuthorized,
   isAdmin,
   gameController.deleteGame
