@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 app.use("/api/user", require("./routes/user"));
 app.use("/api/admin", require("./routes/adminLogin"));
 app.use("/api/game", require("./routes/game"));
+app.use("/api/game/:gameId/review", require("./routes/review"));
 
 const PORT = process.env.PORT || 5000;
 
