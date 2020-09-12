@@ -6,10 +6,10 @@ const reviewController = require("../controllers/Review");
 
 router.get("/all", reviewController.showAllReviews);
 
-router.get("/:id", reviewController.showReview);
+router.get("/:gameId/reviewDetails/:id", reviewController.showReview);
 
 router.post(
-  "/add",
+  "/:gameId/add",
   isAuthorized,
   reviewValidations(),
   validate,
@@ -17,7 +17,7 @@ router.post(
 );
 
 router.put(
-  "/edit/:id",
+  "/:gameId/edit/:id",
   isAuthorized,
   reviewValidations(),
   validate,
