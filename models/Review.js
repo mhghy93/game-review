@@ -10,7 +10,7 @@ const Review = db.define("Review", {
     primaryKey: true,
   },
   review: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   gameId: {
@@ -31,6 +31,10 @@ const Review = db.define("Review", {
   },
   rating: {
     type: DataTypes.INTEGER,
+    validate: {
+      min: 1,
+      max: 5,
+    },
     allowNull: false,
   },
 });

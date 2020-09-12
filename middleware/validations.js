@@ -28,6 +28,13 @@ const gameValidations = () => {
   ];
 };
 
+const reviewValidations = () => {
+  return [
+    check("review", "Review is required").not().isEmpty(),
+    check("rating", "Rating is required").not().isEmpty(),
+  ];
+};
+
 const validate = (req, res, next) => {
   const errors = validationResult(req);
   if (errors.isEmpty()) {
@@ -40,5 +47,6 @@ module.exports = {
   registerUserValidations,
   loginUserValidations,
   gameValidations,
+  reviewValidations,
   validate,
 };
