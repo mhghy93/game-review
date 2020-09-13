@@ -1,9 +1,29 @@
 const Review = require("../models/Review");
-const Game = require("../models/Game");
+const { Op } = require("sequelize");
 
-exports.showAllReviews = (req, res) => {};
+exports.showAllReviews = async (req, res) => {
+  try {
+    const reviews = await Review.findAll({
+      where: { gameId: req.params.gameId },
+    });
+    res.json(reviews);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
 
-exports.showReview = (req, res) => {};
+exports.showReview = async (req, res) => {
+  try {
+    const reviewDetails = await Review.findOne({
+      where: { id: req.params.id },
+    });
+    res.json(reviewDetails);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
 
 exports.addReview = async (req, res) => {
   const { review, rating } = req.body;
@@ -11,7 +31,11 @@ exports.addReview = async (req, res) => {
   const userId = req.user.id;
 
   try {
-    const isReviewed = await Review.findOne({ where: { gameId: gameId } });
+    const isReviewed = await Review.findOne({
+      where: {
+        [Op.and]: [{ gameId: gameId }, { userId: userId }],
+      },
+    });
     if (isReviewed) {
       return res
         .status(400)

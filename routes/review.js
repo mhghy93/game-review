@@ -4,9 +4,9 @@ const { isAuthorized } = require("../middleware/auth");
 const { reviewValidations, validate } = require("../middleware/validations");
 const reviewController = require("../controllers/Review");
 
-router.get("/all", reviewController.showAllReviews);
+router.get("/:gameId/all", reviewController.showAllReviews);
 
-router.get("/:gameId/reviewDetails/:id", reviewController.showReview);
+router.get("/reviewDetails/:id", reviewController.showReview);
 
 router.post(
   "/:gameId/add",
