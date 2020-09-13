@@ -76,4 +76,12 @@ exports.editReview = async (req, res) => {
   }
 };
 
-exports.deleteReview = (req, res) => {};
+exports.deleteReview = async (req, res) => {
+  try {
+    await Review.destroy({ where: { id: req.params.id } });
+    res.json({ msg: "Review Deleted" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
