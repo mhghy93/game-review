@@ -54,6 +54,26 @@ exports.addReview = async (req, res) => {
   }
 };
 
-exports.editReview = (req, res) => {};
+exports.editReview = async (req, res) => {
+  const { review, rating } = req.body;
+  const gameId = req.params.gameId;
+  const userId = req.user.id;
+
+  try {
+    await Review.update(
+      {
+        review: review,
+        gameId: gameId,
+        userId: userId,
+        rating: rating,
+      },
+      { where: { id: req.params.id } }
+    );
+    res.json({ msg: "Successfully updated" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
 
 exports.deleteReview = (req, res) => {};

@@ -17,13 +17,13 @@ router.post(
 );
 
 router.put(
-  "/:gameId/edit/:id",
+  "/edit/:id",
   isAuthorized,
   reviewValidations(),
   validate,
   reviewController.editReview
 );
 
-router.delete("delete/:id", isAuthorized, reviewController.deleteReview);
+router.delete("/delete/:id", isAuthorized, reviewController.deleteReview);
 
 module.exports = router;
