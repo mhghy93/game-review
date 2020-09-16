@@ -1,6 +1,6 @@
-const User = require("../models/User");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const User = require('../models/User');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 exports.register = async (req, res) => {
   const { firstname, lastname, username, email, password } = req.body;
@@ -8,7 +8,7 @@ exports.register = async (req, res) => {
   try {
     let user = await User.findOne({ where: { email: email } });
     if (user) {
-      return res.status(400).json({ errors: [{ msg: "User already exists" }] });
+      return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
     }
 
     user = {
@@ -34,7 +34,7 @@ exports.register = async (req, res) => {
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
-      { expiresIn: "5 days" },
+      { expiresIn: '5 days' },
       (err, token) => {
         if (err) throw err;
         res.json({ token });
@@ -42,7 +42,7 @@ exports.register = async (req, res) => {
     );
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).send('Server error');
   }
 };
 
@@ -52,13 +52,13 @@ exports.login = async (req, res) => {
   try {
     let user = await User.findOne({ where: { email: email } });
     if (!user) {
-      return res.status(400).json({ errors: [{ msg: "Invalid Credentials" }] });
+      return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
     }
-    console.log("user: ", user);
+    console.log('user: ', user);
 
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
-      return res.status(400).json({ errors: [{ msg: "Invalid Credentials" }] });
+      return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
     }
 
     const payload = {
@@ -69,13 +69,13 @@ exports.login = async (req, res) => {
     };
 
     if (payload.user.isAdmin) {
-      return res.status(400).json({ errors: [{ msg: "Invalid Credentials" }] });
+      return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
     }
 
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
-      { expiresIn: "5 days" },
+      { expiresIn: '5 days' },
       (err, token) => {
         if (err) throw err;
         res.json({ token });
@@ -83,7 +83,7 @@ exports.login = async (req, res) => {
     );
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).send('Server error');
   }
 };
 
@@ -93,13 +93,13 @@ exports.adminLogin = async (req, res) => {
   try {
     let user = await User.findOne({ where: { email: email } });
     if (!user) {
-      return res.status(400).json({ errors: [{ msg: "Invalid Credentials" }] });
+      return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
     }
-    console.log("user: ", user);
+    console.log('user: ', user);
 
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
-      return res.status(400).json({ errors: [{ msg: "Invalid Credentials" }] });
+      return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
     }
 
     const payload = {
@@ -110,13 +110,13 @@ exports.adminLogin = async (req, res) => {
     };
 
     if (!payload.user.isAdmin) {
-      return res.status(400).json({ errors: [{ msg: "Invalid Credentials" }] });
+      return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
     }
 
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
-      { expiresIn: "5 days" },
+      { expiresIn: '5 days' },
       (err, token) => {
         if (err) throw err;
         res.json({ token });
@@ -124,6 +124,6 @@ exports.adminLogin = async (req, res) => {
     );
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).send('Server error');
   }
 };

@@ -1,5 +1,5 @@
-const Review = require("../models/Review");
-const { Op } = require("sequelize");
+const Review = require('../models/Review');
+const { Op } = require('sequelize');
 
 exports.showAllReviews = async (req, res) => {
   try {
@@ -9,7 +9,7 @@ exports.showAllReviews = async (req, res) => {
     res.json(reviews);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).send('Server error');
   }
 };
 
@@ -21,7 +21,7 @@ exports.showReview = async (req, res) => {
     res.json(reviewDetails);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).send('Server error');
   }
 };
 
@@ -50,7 +50,7 @@ exports.addReview = async (req, res) => {
     res.json(userReview);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).send('Server error');
   }
 };
 
@@ -69,19 +69,19 @@ exports.editReview = async (req, res) => {
       },
       { where: { id: req.params.id } }
     );
-    res.json({ msg: "Successfully updated" });
+    res.json({ msg: 'Successfully updated' });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).send('Server error');
   }
 };
 
 exports.deleteReview = async (req, res) => {
   try {
     await Review.destroy({ where: { id: req.params.id } });
-    res.json({ msg: "Review Deleted" });
+    res.json({ msg: 'Review Deleted' });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).send('Server error');
   }
 };

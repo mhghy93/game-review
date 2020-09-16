@@ -1,15 +1,15 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const { isAuthorized, isAdmin } = require("../middleware/auth");
-const { gameValidations, validate } = require("../middleware/validations");
-const gameController = require("../controllers/Game");
+const { isAuthorized, isAdmin } = require('../middleware/auth');
+const { gameValidations, validate } = require('../middleware/validations');
+const gameController = require('../controllers/Game');
 
-router.get("/all", gameController.getAllGames);
+router.get('/all', gameController.getAllGames);
 
-router.get("/:id", gameController.getGameDetail);
+router.get('/:id', gameController.getGameDetail);
 
 router.post(
-  "/admin/add",
+  '/admin/add',
   isAuthorized,
   isAdmin,
   gameValidations(),
@@ -18,7 +18,7 @@ router.post(
 );
 
 router.put(
-  "/admin/edit/:id",
+  '/admin/edit/:id',
   isAuthorized,
   isAdmin,
   gameValidations(),
@@ -27,7 +27,7 @@ router.put(
 );
 
 router.delete(
-  "/admin/delete/:id",
+  '/admin/delete/:id',
   isAuthorized,
   isAdmin,
   gameController.deleteGame

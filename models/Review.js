@@ -1,9 +1,9 @@
-const { DataTypes } = require("sequelize");
-const { db } = require("../config/db");
-const Game = require("./Game");
-const User = require("./User");
+const { DataTypes } = require('sequelize');
+const { db } = require('../config/db');
+const Game = require('./Game');
+const User = require('./User');
 
-const Review = db.define("Review", {
+const Review = db.define('Review', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -18,7 +18,7 @@ const Review = db.define("Review", {
     type: DataTypes.INTEGER,
     references: {
       model: Game,
-      key: "id",
+      key: 'id',
     },
     allowNull: false,
   },
@@ -26,7 +26,7 @@ const Review = db.define("Review", {
     type: DataTypes.INTEGER,
     references: {
       model: User,
-      key: "id",
+      key: 'id',
     },
     allowNull: false,
   },

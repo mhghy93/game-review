@@ -1,4 +1,4 @@
-const Game = require("../models/Game");
+const Game = require('../models/Game');
 
 exports.getAllGames = async (req, res) => {
   try {
@@ -6,7 +6,7 @@ exports.getAllGames = async (req, res) => {
     res.json(games);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).send('Server error');
   }
 };
 
@@ -16,7 +16,7 @@ exports.getGameDetail = async (req, res) => {
     res.json(game);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).send('Server error');
   }
 };
 
@@ -43,7 +43,7 @@ exports.addGame = async (req, res) => {
     res.json(game);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).send('Server error');
   }
 };
 
@@ -69,19 +69,19 @@ exports.editGame = async (req, res) => {
       },
       { where: { id: req.params.id } }
     );
-    res.json({ msg: "Successfully updated" });
+    res.json({ msg: 'Successfully updated' });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).send('Server error');
   }
 };
 
 exports.deleteGame = async (req, res) => {
   try {
     await Game.destroy({ where: { id: req.params.id } });
-    res.json({ msg: "Game Deleted" });
+    res.json({ msg: 'Game Deleted' });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).send('Server error');
   }
 };
