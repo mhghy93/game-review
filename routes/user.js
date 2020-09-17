@@ -16,11 +16,4 @@ router.post(
 
 router.post('/login', loginUserValidations(), validate, userController.login);
 
-router.post(
-  '/admin/login',
-  loginUserValidations(),
-  validate,
-  userController.adminLogin
-);
-
 module.exports = router;
