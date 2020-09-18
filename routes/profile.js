@@ -1,11 +1,12 @@
 const express = require('express');
+const { isAuthorized } = require('../middleware/auth');
 const profileController = require('../controllers/Profile');
 const router = express.Router();
 
-router.get('/:id', profileController.showProfile);
+router.get('/', isAuthorized, profileController.showProfile);
 
-router.put('/edit/:id', profileController.editProfile);
+router.put('/edit', isAuthorized, profileController.editProfile);
 
-router.put('/delete/:id', profileController.deleteProfile);
+router.put('/delete', isAuthorized, profileController.deleteProfile);
 
 module.exports = router;
