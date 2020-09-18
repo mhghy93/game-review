@@ -1,6 +1,6 @@
 const { check, validationResult } = require('express-validator');
 
-const registerUserValidations = () => {
+const userValidations = () => {
   return [
     check('firstname', 'First Name is required').not().isEmpty(),
     check('lastname', 'Last Name is required').not().isEmpty(),
@@ -14,6 +14,15 @@ const loginUserValidations = () => {
   return [
     check('email', 'Please include a valid email').isEmail(),
     check('password', 'Password is required').exists(),
+  ];
+};
+
+const profileUpdateValidations = () => {
+  return [
+    check('firstname', 'First Name is required').not().isEmpty(),
+    check('lastname', 'Last Name is required').not().isEmpty(),
+    check('username', 'username is required').not().isEmpty(),
+    check('email', 'Please include a valid email').isEmail(),
   ];
 };
 
@@ -44,8 +53,9 @@ const validate = (req, res, next) => {
 };
 
 module.exports = {
-  registerUserValidations,
+  userValidations,
   loginUserValidations,
+  profileUpdateValidations,
   gameValidations,
   reviewValidations,
   validate,
