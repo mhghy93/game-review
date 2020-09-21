@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const isAuthorized = (req, res, next) => {
+const isAuthenticated = (req, res, next) => {
   const token = req.header('x-auth-token');
 
   if (!token) {
@@ -74,4 +74,4 @@ const notAdmin = async (req, res, next) => {
   }
 };
 
-module.exports = { isAuthorized, isAdmin, notAdmin };
+module.exports = { isAuthenticated, isAdmin, notAdmin };

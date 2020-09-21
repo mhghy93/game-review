@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { isAuthorized, notAdmin } = require('../middleware/auth');
+const { isAuthenticated, notAdmin } = require('../middleware/auth');
 const { reviewValidations, validate } = require('../middleware/validations');
 const reviewController = require('../controllers/Review');
 
@@ -10,7 +10,7 @@ router.get('/reviewDetails/:id', reviewController.showReview);
 
 router.post(
   '/:gameId/add',
-  isAuthorized,
+  isAuthenticated,
   notAdmin,
   reviewValidations(),
   validate,
@@ -19,7 +19,7 @@ router.post(
 
 router.put(
   '/edit/:id',
-  isAuthorized,
+  isAuthenticated,
   notAdmin,
   reviewValidations(),
   validate,
@@ -28,7 +28,7 @@ router.put(
 
 router.delete(
   '/delete/:id',
-  isAuthorized,
+  isAuthenticated,
   notAdmin,
   reviewController.deleteReview
 );

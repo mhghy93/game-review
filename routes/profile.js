@@ -1,5 +1,5 @@
 const express = require('express');
-const { isAuthorized } = require('../middleware/auth');
+const { isAuthenticated } = require('../middleware/auth');
 const {
   profileUpdateValidations,
   validate,
@@ -7,16 +7,16 @@ const {
 const profileController = require('../controllers/Profile');
 const router = express.Router();
 
-router.get('/', isAuthorized, profileController.showProfile);
+router.get('/', isAuthenticated, profileController.showProfile);
 
 router.put(
   '/edit',
-  isAuthorized,
+  isAuthenticated,
   profileUpdateValidations(),
   validate,
   profileController.editProfile
 );
 
-router.delete('/delete', isAuthorized, profileController.deleteProfile);
+router.delete('/delete', isAuthenticated, profileController.deleteProfile);
 
 module.exports = router;

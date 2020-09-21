@@ -56,15 +56,15 @@ exports.addReview = async (req, res) => {
 
 exports.editReview = async (req, res) => {
   const { review, rating } = req.body;
-  const gameId = req.params.gameId;
-  const userId = req.user.id;
+  // const gameId = req.params.gameId;
+  // const userId = req.user.id;
 
   try {
     await Review.update(
       {
         review: review,
-        gameId: gameId,
-        userId: userId,
+        // gameId: gameId,
+        // userId: userId,
         rating: rating,
       },
       { where: { id: req.params.id } }
