@@ -17,6 +17,6 @@ router.put(
   profileController.editProfile
 );
 
-router.put('/delete', isAuthorized, profileController.deleteProfile);
+router.delete('/delete', isAuthorized, profileController.deleteProfile);
 
 module.exports = router;

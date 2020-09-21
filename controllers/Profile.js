@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Review = require('../models/Review');
 const { Op } = require('sequelize');
 
 exports.showProfile = async (req, res) => {
@@ -53,4 +54,13 @@ exports.editProfile = async (req, res) => {
   }
 };
 
-exports.deleteProfile = (req, res) => {};
+exports.deleteProfile = async (req, res) => {
+  try {
+    await Review.destroy({ where: { userId: req.user.id } });
+    await User.destroy({ where: { id: req.user.id } });
+    res.json({ msg: 'Your Account Has Been Deleted' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
