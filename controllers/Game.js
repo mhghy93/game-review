@@ -1,4 +1,5 @@
 const Game = require('../models/Game');
+const Review = require('../models/Review');
 
 exports.getAllGames = async (req, res) => {
   try {
@@ -78,6 +79,7 @@ exports.editGame = async (req, res) => {
 
 exports.deleteGame = async (req, res) => {
   try {
+    await Review.destroy({ where: { gameId: req.params.id } });
     await Game.destroy({ where: { id: req.params.id } });
     res.json({ msg: 'Game Deleted' });
   } catch (err) {
