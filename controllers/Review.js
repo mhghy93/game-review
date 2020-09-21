@@ -56,15 +56,20 @@ exports.addReview = async (req, res) => {
 
 exports.editReview = async (req, res) => {
   const { review, rating } = req.body;
-  // const gameId = req.params.gameId;
-  // const userId = req.user.id;
 
   try {
+    const isUser = await Review.findOne({
+      where: {
+        [Op.and]: [{ id: req.params.id }, { userId: req.user.id }],
+      },
+    });
+    if (!isUser) {
+      return res.status(401).json({ msg: 'authorization denied' });
+    }
+
     await Review.update(
       {
         review: review,
-        // gameId: gameId,
-        // userId: userId,
         rating: rating,
       },
       { where: { id: req.params.id } }
@@ -78,6 +83,15 @@ exports.editReview = async (req, res) => {
 
 exports.deleteReview = async (req, res) => {
   try {
+    const isUser = await Review.findOne({
+      where: {
+        [Op.and]: [{ id: req.params.id }, { userId: req.user.id }],
+      },
+    });
+    if (!isUser) {
+      return res.status(401).json({ msg: 'authorization denied' });
+    }
+
     await Review.destroy({ where: { id: req.params.id } });
     res.json({ msg: 'Review Deleted' });
   } catch (err) {
