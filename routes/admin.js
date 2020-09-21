@@ -2,7 +2,6 @@ const express = require('express');
 const { loginUserValidations, validate } = require('../middleware/validations');
 const { isAdmin } = require('../middleware/auth');
 const adminController = require('../controllers/Admin');
-const reviewController = require('../controllers/Review');
 const router = express.Router();
 
 router.post(
@@ -16,6 +15,6 @@ router.get('/show/users', isAdmin, adminController.showAllUsers);
 
 router.delete('/delete/user/:id', isAdmin, adminController.deleteUser);
 
-router.delete('/delete/review/:id', isAdmin, reviewController.deleteReview);
+router.delete('/delete/review/:id', isAdmin, adminController.deleteUserReview);
 
 module.exports = router;
