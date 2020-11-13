@@ -1,12 +1,9 @@
 import React from 'react';
+import NavigationBar from './components/layout/NavigationBar';
 import './App.css';
 
 function App() {
-  return (
-    <div>
-      <h1>game review</h1>
-    </div>
-  );
+  return <NavigationBar />;
 }
 
 export default App;
