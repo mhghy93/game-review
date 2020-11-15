@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Container } from 'react-bootstrap';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavigationBar from './components/layout/NavigationBar';
 import Home from './components/pages/Home';
@@ -10,10 +11,14 @@ function App() {
     <BrowserRouter>
       <Fragment>
         <NavigationBar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route component={NotFound} />
-        </Switch>
+        <main className="mt-3">
+          <Container>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route component={NotFound} />
+            </Switch>
+          </Container>
+        </main>
       </Fragment>
     </BrowserRouter>
   );
