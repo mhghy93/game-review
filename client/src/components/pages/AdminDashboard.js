@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import AdminLogin from './AdminLogin';
+import AdminLogin from '../admin/AdminLogin';
 
 const AdminDashboard = () => {
   return (
