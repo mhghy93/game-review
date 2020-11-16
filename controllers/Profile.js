@@ -6,7 +6,7 @@ exports.showProfile = async (req, res) => {
   try {
     const profile = await User.findOne({
       attributes: ['firstname', 'lastname', 'username', 'email', 'createdAt'],
-      where: { id: req.user.id },
+      where: { id: req.user.id, [Op.and]: [{ isAdmin: false }] },
     });
     res.json(profile);
   } catch (err) {

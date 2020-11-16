@@ -2,6 +2,7 @@ const User = require('../models/User');
 const Review = require('../models/Review');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { Op } = require('sequelize');
 
 exports.adminLogin = async (req, res) => {
   const { email, password } = req.body;
@@ -59,6 +60,19 @@ exports.showAllUsers = async (req, res) => {
       where: { isAdmin: false },
     });
     res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
+
+exports.loadAdmin = async (req, res) => {
+  try {
+    const profile = await User.findOne({
+      attributes: ['username', 'email'],
+      where: { id: req.user.id, [Op.and]: [{ isAdmin: true }] },
+    });
+    res.json(profile);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');

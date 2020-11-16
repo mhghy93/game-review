@@ -11,6 +11,8 @@ router.post(
   adminController.adminLogin
 );
 
+router.get('/', isAdmin, adminController.loadAdmin);
+
 router.get('/show/users', isAdmin, adminController.showAllUsers);
 
 router.delete('/delete/user/:id', isAdmin, adminController.deleteUser);
