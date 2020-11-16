@@ -4,7 +4,7 @@ import AdminLogin from '../admin/AdminLogin';
 const AdminDashboard = () => {
   return (
     <Fragment>
-      <AdminLogin />
+      <h1>Admin Dashboard</h1>
     </Fragment>
   );
 };

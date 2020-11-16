@@ -5,6 +5,7 @@ import NavigationBar from './components/layout/NavigationBar';
 import Home from './components/pages/Home';
 import Login from './components/auth/Login';
 import AdminDashboard from './components/pages/AdminDashboard';
+import AdminLogin from './components/admin/AdminLogin';
 import NotFound from './components/pages/NotFound';
 import './App.css';
 
@@ -18,6 +19,7 @@ function App() {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/admin/login" component={AdminLogin} />
               <Route exact path="/admin/dashboard" component={AdminDashboard} />
               <Route component={NotFound} />
             </Switch>
