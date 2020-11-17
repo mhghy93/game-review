@@ -1,10 +1,10 @@
-import React, { Fragment } from 'react';
-import AdminLogin from '../admin/AdminLogin';
+import React, { Fragment, useEffect } from 'react';
+import { adminLogin, loadAdmin } from '../../actions/admin';
 
-const AdminDashboard = () => {
+const AdminDashboard = ({ admin }) => {
   return (
     <Fragment>
-      <h1>Admin Dashboard</h1>
+      <h1>Admin Dashboard </h1>
     </Fragment>
   );
 };

@@ -69,7 +69,7 @@ exports.showAllUsers = async (req, res) => {
 exports.loadAdmin = async (req, res) => {
   try {
     const profile = await User.findOne({
-      attributes: ['username', 'email'],
+      attributes: ['username'],
       where: { id: req.user.id, [Op.and]: [{ isAdmin: true }] },
     });
     res.json(profile);

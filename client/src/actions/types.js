@@ -5,7 +5,6 @@ export const EDIT_GAME = 'EDIT_GAME';
 export const DELETE_GAME = 'DELETE_GAME';
 export const GAME_ERROR = 'GAME_ERROR';
 
-export const ADMIN_LOGIN = 'ADMIN_LOGIN';
 export const ADMIN_LOGIN_SUCCESS = 'ADMIN_LOGIN_SUCCESS';
 export const ADMIN_LOGIN_FAIL = 'ADMIN_LOGIN_FAIL';
 export const ADMIN_LOADED = 'ADMIN_LOADED';
