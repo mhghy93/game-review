@@ -16,7 +16,7 @@ const AdminLogin = ({ adminLogin, isAuthenticated }) => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     adminLogin(email, password);
   };
@@ -30,7 +30,7 @@ const AdminLogin = ({ adminLogin, isAuthenticated }) => {
       <div className="row justify-content-center px-5 pt-5 pb-5">
         <Card className="shadow bg-white rounded">
           <Card.Body>
-            <Form onSubmit={onSubmit}>
+            <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
@@ -77,7 +77,7 @@ AdminLogin.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.isAuthenticated,
+  isAuthenticated: state.admin.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { adminLogin })(AdminLogin);

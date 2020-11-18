@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavigationBar from './components/layout/NavigationBar';
+import AdminPrivateRoute from './components/routes/AdminPrivateRoute';
 import Home from './components/pages/Home';
 import Login from './components/auth/Login';
 import AdminDashboard from './components/pages/AdminDashboard';
@@ -30,7 +31,11 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/admin/login" component={AdminLogin} />
-              <Route exact path="/admin" component={AdminDashboard} />
+              <AdminPrivateRoute
+                exact
+                path="/admin"
+                component={AdminDashboard}
+              />
               <Route component={NotFound} />
             </Switch>
           </Container>
