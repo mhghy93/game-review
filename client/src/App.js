@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavigationBar from './components/layout/NavigationBar';
+import AdminNavbar from './components/layout/AdminNavbar';
 import AdminPrivateRoute from './components/routes/AdminPrivateRoute';
 import Home from './components/pages/Home';
 import Login from './components/auth/Login';
@@ -18,13 +19,22 @@ if (localStorage.token) {
 }
 
 function App() {
+  const pathname = window.location.pathname;
   useEffect(() => {
-    store.dispatch(loadAdmin());
+    if (pathname === '/admin' || pathname === '/admin/login') {
+      store.dispatch(loadAdmin());
+    }
   }, []);
+
   return (
     <BrowserRouter>
       <Fragment>
-        <NavigationBar />
+        {pathname === '/admin' || pathname === '/admin/login' ? (
+          <AdminNavbar />
+        ) : (
+          <NavigationBar />
+        )}
+        {/* <NavigationBar /> */}
         <main className="mt-5">
           <Container>
             <Switch>
