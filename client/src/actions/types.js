@@ -7,6 +7,7 @@ export const GAME_ERROR = 'GAME_ERROR';
 
 export const ADMIN_LOGIN_SUCCESS = 'ADMIN_LOGIN_SUCCESS';
 export const ADMIN_LOGIN_FAIL = 'ADMIN_LOGIN_FAIL';
+export const ADMIN_LOGOUT = 'ADMIN_LOGOUT';
 export const ADMIN_LOADED = 'ADMIN_LOADED';
 export const ADMIN_AUTH_ERROR = 'ADMIN_AUTH_ERROR';
 export const SHOW_ALL_USERS = 'SHOW_ALL_USERS';

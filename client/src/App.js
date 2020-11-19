@@ -34,7 +34,6 @@ function App() {
         ) : (
           <NavigationBar />
         )}
-        {/* <NavigationBar /> */}
         <main className="mt-5">
           <Container>
             <Switch>

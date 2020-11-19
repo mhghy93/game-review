@@ -1,6 +1,7 @@
 import {
   ADMIN_LOGIN_SUCCESS,
   ADMIN_LOGIN_FAIL,
+  ADMIN_LOGOUT,
   ADMIN_LOADED,
   ADMIN_AUTH_ERROR,
   SHOW_ALL_USERS,
@@ -52,4 +53,8 @@ export const adminLogin = (email, password) => async (dispatch) => {
       type: ADMIN_LOGIN_FAIL,
     });
   }
+};
+
+export const adminLogout = () => (dispatch) => {
+  dispatch({ type: ADMIN_LOGOUT });
 };

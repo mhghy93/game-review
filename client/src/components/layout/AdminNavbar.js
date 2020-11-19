@@ -1,7 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { adminLogout } from '../../actions/admin';
 
-const AdminNavbar = () => {
+const AdminNavbar = ({ admin: { isAuthenticated }, adminLogout }) => {
   return (
     <Navbar
       collapseOnSelect
@@ -10,7 +14,9 @@ const AdminNavbar = () => {
       variant="light"
       sticky="top"
     >
-      <Navbar.Brand href="#home">Admin Game Reviews</Navbar.Brand>
+      <LinkContainer to="/admin">
+        <Navbar.Brand>Admin Game Reviews</Navbar.Brand>
+      </LinkContainer>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
@@ -28,14 +34,28 @@ const AdminNavbar = () => {
           </NavDropdown>
         </Nav>
         <Nav>
-          <Nav.Link href="#deets">Sign up</Nav.Link>
-          <Nav.Link eventKey={2} href="#memes">
-            Log In
-          </Nav.Link>
+          {!isAuthenticated ? (
+            <LinkContainer to="/admin/login">
+              <Nav.Link eventKey={2}>Log In</Nav.Link>
+            </LinkContainer>
+          ) : (
+            <Nav.Link onClick={adminLogout} eventKey={2}>
+              Logout
+            </Nav.Link>
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
   );
 };
 
-export default AdminNavbar;
+AdminNavbar.propTypes = {
+  admin: PropTypes.object.isRequired,
+  adminLogout: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  admin: state.admin,
+});
+
+export default connect(mapStateToProps, { adminLogout })(AdminNavbar);

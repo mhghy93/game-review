@@ -1,6 +1,7 @@
 import {
   ADMIN_LOGIN_SUCCESS,
   ADMIN_LOGIN_FAIL,
+  ADMIN_LOGOUT,
   ADMIN_LOADED,
   ADMIN_AUTH_ERROR,
   SHOW_ALL_USERS,
@@ -35,6 +36,7 @@ export default function (state = initialState, action) {
         isAuthenticated: true,
         loading: false,
       };
+    case ADMIN_LOGOUT:
     case ADMIN_LOGIN_FAIL:
     case ADMIN_AUTH_ERROR:
     case DELETE_USER_ACCOUNT:
