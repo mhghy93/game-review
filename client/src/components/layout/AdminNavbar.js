@@ -25,9 +25,11 @@ const AdminNavbar = ({ admin: { isAuthenticated }, adminLogout }) => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#features">
-              <i class="fas fa-plus-circle"></i> Add Game
-            </Nav.Link>
+            <LinkContainer to="/admin/game/add">
+              <Nav.Link>
+                <i class="fas fa-plus-circle"></i> Add Game
+              </Nav.Link>
+            </LinkContainer>
           </Nav>
           <Nav>
             {!isAuthenticated ? (

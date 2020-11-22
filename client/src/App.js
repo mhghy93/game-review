@@ -20,7 +20,11 @@ function App() {
 
   return (
     <Fragment>
-      {pathname === '/admin' || pathname === '/admin/login' ? (
+      {pathname === '/admin' ||
+      pathname === '/admin/login' ||
+      pathname === '/admin/game/add' ||
+      pathname === '/admin/show/games' ||
+      pathname === '/admin/show/users' ? (
         <AdminRoutes />
       ) : (
         <UserRoutes />
