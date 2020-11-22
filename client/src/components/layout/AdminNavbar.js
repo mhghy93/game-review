@@ -17,32 +17,28 @@ const AdminNavbar = ({ admin: { isAuthenticated }, adminLogout }) => {
         sticky="top"
       >
         <LinkContainer to="/admin">
-          <Navbar.Brand>Admin Game Reviews</Navbar.Brand>
+          <Navbar.Brand>
+            {' '}
+            <i class="fab fa-fantasy-flight-games"></i> Admin Game Reviews
+          </Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#features">About</Nav.Link>
-            <NavDropdown title="Categories" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href="#features">
+              <i class="fas fa-plus-circle"></i> Add Game
+            </Nav.Link>
           </Nav>
           <Nav>
             {!isAuthenticated ? (
               <LinkContainer to="/admin/login">
-                <Nav.Link eventKey={2}>Log In</Nav.Link>
+                <Nav.Link eventKey={2}>
+                  <i class="fas fa-sign-in-alt"></i> Log In
+                </Nav.Link>
               </LinkContainer>
             ) : (
               <Nav.Link onClick={adminLogout} eventKey={2}>
-                Logout
+                <i class="fas fa-sign-out-alt"></i> Logout
               </Nav.Link>
             )}
           </Nav>
