@@ -11,7 +11,7 @@ import AddGame from '../games/AddGame';
 const AdminRoutes = () => {
   return (
     <BrowserRouter>
-      <div class="d-flex" id="wrapper">
+      <div className="d-flex" id="wrapper">
         <div className="bg-light border-right" id="sidebar-wrapper">
           <AdminSidebar />
         </div>

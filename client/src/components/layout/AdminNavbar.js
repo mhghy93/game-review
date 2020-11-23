@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import AdminSidebar from './AdminSidebar';
 import { adminLogout } from '../../actions/admin';
 
 const AdminNavbar = ({ admin: { isAuthenticated }, adminLogout }) => {
+  console.log('isAuthenticted', isAuthenticated);
   return (
     <Fragment>
       <Navbar
@@ -19,7 +19,7 @@ const AdminNavbar = ({ admin: { isAuthenticated }, adminLogout }) => {
         <LinkContainer to="/admin">
           <Navbar.Brand>
             {' '}
-            <i class="fab fa-fantasy-flight-games"></i> Admin Game Reviews
+            <i className="fab fa-fantasy-flight-games"></i> Admin Game Reviews
           </Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -27,7 +27,7 @@ const AdminNavbar = ({ admin: { isAuthenticated }, adminLogout }) => {
           <Nav className="mr-auto">
             <LinkContainer to="/admin/game/add">
               <Nav.Link>
-                <i class="fas fa-plus-circle"></i> Add Game
+                <i className="fas fa-plus-circle"></i> Add Game
               </Nav.Link>
             </LinkContainer>
           </Nav>
@@ -35,12 +35,12 @@ const AdminNavbar = ({ admin: { isAuthenticated }, adminLogout }) => {
             {!isAuthenticated ? (
               <LinkContainer to="/admin/login">
                 <Nav.Link eventKey={2}>
-                  <i class="fas fa-sign-in-alt"></i> Log In
+                  <i className="fas fa-sign-in-alt"></i> Log In
                 </Nav.Link>
               </LinkContainer>
             ) : (
               <Nav.Link onClick={adminLogout} eventKey={2}>
-                <i class="fas fa-sign-out-alt"></i> Logout
+                <i className="fas fa-sign-out-alt"></i> Logout
               </Nav.Link>
             )}
           </Nav>
