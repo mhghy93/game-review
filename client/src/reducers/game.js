@@ -14,9 +14,14 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case ADD_GAME:
-      return state;
+      return {
+        ...state,
+        games: [payload, ...state.games],
+        loading: true,
+      };
     case SHOW_ALL_GAMES:
       return state;
     case SHOW_GAME_DETAIL:
@@ -26,7 +31,11 @@ export default function (state = initialState, action) {
     case DELETE_GAME:
       return state;
     case GAME_ERROR:
-      return state;
+      return {
+        ...state,
+        error: payload,
+        loading: false,
+      };
     default:
       return state;
   }

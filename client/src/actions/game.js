@@ -9,8 +9,24 @@ import {
 import axios from 'axios';
 
 export const addGame = (game) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
   try {
-  } catch (err) {}
+    const res = await axios.post('/api/game/admin/add', game, config);
+
+    dispatch({
+      type: ADD_GAME,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: GAME_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
 };
 
 export const editGame = (id) => async (dispatch) => {
