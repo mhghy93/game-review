@@ -7,6 +7,7 @@ import AdminPrivateRoute from './AdminPrivateRoute';
 import AdminLogin from '../admin/AdminLogin';
 import AdminDashboard from '../pages/AdminDashboard';
 import AddGame from '../games/AddGame';
+import AdminShowGames from '../games/AdminShowGames';
 
 const AdminRoutes = () => {
   return (
@@ -29,6 +30,11 @@ const AdminRoutes = () => {
                 exact
                 path="/admin/game/add"
                 component={AddGame}
+              />
+              <AdminPrivateRoute
+                exact
+                path="/admin/show/games"
+                component={AdminShowGames}
               />
             </Switch>
           </Container>

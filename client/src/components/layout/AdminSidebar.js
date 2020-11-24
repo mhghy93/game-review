@@ -14,9 +14,12 @@ const AdminSidebar = () => {
         >
           <i className="fas fa-plus-circle"></i> Add Game
         </Link>
-        <a href="#" className="list-group-item list-group-item-action bg-light">
+        <Link
+          to="/admin/show/games"
+          className="list-group-item list-group-item-action bg-light"
+        >
           <i className="fas fa-gamepad"></i> Show all Games
-        </a>
+        </Link>
         <a href="#" className="list-group-item list-group-item-action bg-light">
           <i className="fas fa-users"></i> Show All Users
         </a>
