@@ -23,7 +23,10 @@ export default function (state = initialState, action) {
         loading: true,
       };
     case SHOW_ALL_GAMES:
-      return state;
+      return {
+        ...state,
+        games: payload,
+      };
     case SHOW_GAME_DETAIL:
       return state;
     case EDIT_GAME:
