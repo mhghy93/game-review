@@ -6,7 +6,6 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { adminLogout } from '../../actions/admin';
 
 const AdminNavbar = ({ admin: { isAuthenticated }, adminLogout }) => {
-  console.log('isAuthenticted', isAuthenticated);
   return (
     <Fragment>
       <Navbar
