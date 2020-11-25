@@ -5,6 +5,7 @@ import {
   ADMIN_LOADED,
   ADMIN_AUTH_ERROR,
   SHOW_ALL_USERS,
+  SHOW_USERS_ERROR,
   DELETE_USER_REVIEW,
   DELETE_USER_ACCOUNT,
 } from '../actions/types';
@@ -15,6 +16,7 @@ const initialState = {
   isAuthenticated: false,
   loading: true,
   adminUser: {},
+  error: {},
 };
 
 export default function (state = initialState, action) {
@@ -45,6 +47,17 @@ export default function (state = initialState, action) {
         ...state,
         token: null,
         isAuthenticated: false,
+        loading: false,
+      };
+    case SHOW_ALL_USERS:
+      return {
+        ...state,
+        users: payload,
+      };
+    case SHOW_USERS_ERROR:
+      return {
+        ...state,
+        error: payload,
         loading: false,
       };
     default:

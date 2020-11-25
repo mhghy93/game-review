@@ -5,6 +5,7 @@ import {
   ADMIN_LOADED,
   ADMIN_AUTH_ERROR,
   SHOW_ALL_USERS,
+  SHOW_USERS_ERROR,
   DELETE_USER_REVIEW,
   DELETE_USER_ACCOUNT,
 } from './types';
@@ -57,4 +58,20 @@ export const adminLogin = (email, password) => async (dispatch) => {
 
 export const adminLogout = () => (dispatch) => {
   dispatch({ type: ADMIN_LOGOUT });
+};
+
+export const showUsers = () => async (dispatch) => {
+  try {
+    const res = await axios.get('/api/admin/show/users');
+
+    dispatch({
+      type: SHOW_ALL_USERS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: SHOW_USERS_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
 };
