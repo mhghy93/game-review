@@ -10,6 +10,7 @@ const AdminGamesItem = ({ game }) => {
         <td>{game.title}</td>
         <td>{game.category}</td>
         <td>{game.platform}</td>
+        <td>{new Date(game.createdAt).toLocaleDateString()}</td>
         <td>
           <Button variant="info">Details</Button>
         </td>

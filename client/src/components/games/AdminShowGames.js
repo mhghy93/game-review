@@ -20,7 +20,8 @@ const AdminShowGames = ({ showAllGames, game: { games } }) => {
             <th>Title</th>
             <th>Category</th>
             <th>Platform</th>
-            <th colSpan="2"></th>
+            <th>Created At</th>
+            <th colSpan="3"></th>
           </tr>
         </thead>
         <tbody>
