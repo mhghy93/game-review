@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const AdminGamesItem = ({ game }) => {
   return (
@@ -15,7 +16,9 @@ const AdminGamesItem = ({ game }) => {
           <Button variant="info">Details</Button>
         </td>
         <td>
-          <Button variant="success">Edit</Button>
+          <LinkContainer to={`/admin/game/edit/${game.id}`}>
+            <Button variant="success">Edit</Button>
+          </LinkContainer>
         </td>
         <td>
           <Button variant="danger">Delete</Button>

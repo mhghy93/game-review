@@ -9,6 +9,7 @@ import AdminDashboard from '../pages/AdminDashboard';
 import AddGame from '../games/AddGame';
 import AdminShowGames from '../games/AdminShowGames';
 import ShowUsers from '../admin/ShowUsers';
+import EditGame from '../games/EditGame';
 
 const AdminRoutes = () => {
   return (
@@ -41,6 +42,11 @@ const AdminRoutes = () => {
                 exact
                 path="/admin/show/users"
                 component={ShowUsers}
+              />
+              <AdminPrivateRoute
+                exact
+                path="/admin/game/edit/:id"
+                component={EditGame}
               />
             </Switch>
           </Container>

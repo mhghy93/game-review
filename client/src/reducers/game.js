@@ -9,6 +9,7 @@ import {
 
 const initialState = {
   games: [],
+  game: {},
   loading: false,
   error: {},
 };
@@ -28,7 +29,10 @@ export default function (state = initialState, action) {
         games: payload,
       };
     case SHOW_GAME_DETAIL:
-      return state;
+      return {
+        ...state,
+        game: payload,
+      };
     case EDIT_GAME:
       return state;
     case DELETE_GAME:

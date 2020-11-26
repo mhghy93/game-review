@@ -52,7 +52,18 @@ export const showAllGames = () => async (dispatch) => {
 
 export const showGameDetail = (id) => async (dispatch) => {
   try {
-  } catch (err) {}
+    const res = await axios.get(`/api/game/${id}`);
+
+    dispatch({
+      type: SHOW_GAME_DETAIL,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: GAME_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
 };
 
 export const deleteGame = (id) => async (dispatch) => {

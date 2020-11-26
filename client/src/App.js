@@ -18,7 +18,8 @@ function App() {
       pathname === '/admin/login' ||
       pathname === '/admin/game/add' ||
       pathname === '/admin/show/games' ||
-      pathname === '/admin/show/users'
+      pathname === '/admin/show/users' ||
+      pathname === '/admin/game/edit/:id'
     ) {
       store.dispatch(loadAdmin());
     }
@@ -30,7 +31,8 @@ function App() {
       pathname === '/admin/login' ||
       pathname === '/admin/game/add' ||
       pathname === '/admin/show/games' ||
-      pathname === '/admin/show/users' ? (
+      pathname === '/admin/show/users' ||
+      pathname === '/admin/game/edit/:id' ? (
         <AdminRoutes />
       ) : (
         <UserRoutes />
