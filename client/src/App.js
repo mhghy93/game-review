@@ -13,30 +13,14 @@ if (localStorage.token) {
 function App() {
   const pathname = window.location.pathname;
   useEffect(() => {
-    if (
-      pathname === '/admin' ||
-      pathname === '/admin/login' ||
-      pathname === '/admin/game/add' ||
-      pathname === '/admin/show/games' ||
-      pathname === '/admin/show/users' ||
-      pathname === '/admin/game/edit/:id'
-    ) {
+    if (pathname.includes('/admin')) {
       store.dispatch(loadAdmin());
     }
   }, []);
 
   return (
     <Fragment>
-      {pathname === '/admin' ||
-      pathname === '/admin/login' ||
-      pathname === '/admin/game/add' ||
-      pathname === '/admin/show/games' ||
-      pathname === '/admin/show/users' ||
-      pathname === '/admin/game/edit/:id' ? (
-        <AdminRoutes />
-      ) : (
-        <UserRoutes />
-      )}
+      {pathname.includes('/admin') ? <AdminRoutes /> : <UserRoutes />}
     </Fragment>
   );
 }

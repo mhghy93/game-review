@@ -10,6 +10,7 @@ import AddGame from '../games/AddGame';
 import AdminShowGames from '../games/AdminShowGames';
 import ShowUsers from '../admin/ShowUsers';
 import EditGame from '../games/EditGame';
+import NotFound from '../pages/NotFound';
 
 const AdminRoutes = () => {
   return (
@@ -48,6 +49,7 @@ const AdminRoutes = () => {
                 path="/admin/game/edit/:id"
                 component={EditGame}
               />
+              <Route component={NotFound} />
             </Switch>
           </Container>
         </div>
