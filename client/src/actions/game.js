@@ -29,9 +29,25 @@ export const addGame = (game) => async (dispatch) => {
   }
 };
 
-export const editGame = (id) => async (dispatch) => {
+export const editGame = (id, game) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
   try {
-  } catch (err) {}
+    const res = await axios.put(`/api/game/admin/edit${id}`, game, config);
+
+    dispatch({
+      type: EDIT_GAME,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: GAME_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
 };
 
 export const showAllGames = () => async (dispatch) => {

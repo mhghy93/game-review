@@ -34,7 +34,12 @@ export default function (state = initialState, action) {
         game: payload,
       };
     case EDIT_GAME:
-      return state;
+      return {
+        ...state,
+        games: state.games.map((game) =>
+          game.id === payload.id ? payload : game
+        ),
+      };
     case DELETE_GAME:
       return state;
     case GAME_ERROR:

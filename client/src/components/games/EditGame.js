@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
-import { showGameDetail } from '../../actions/game';
 import { LinkContainer } from 'react-router-bootstrap';
+import { showGameDetail } from '../../actions/game';
 
 const EditGame = ({ showGameDetail, game: { game }, match }) => {
   useEffect(() => {
