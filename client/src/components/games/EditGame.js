@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { showGameDetail } from '../../actions/game';
+import { showGameDetail, editGame } from '../../actions/game';
 
-const EditGame = ({ showGameDetail, game: { game }, match }) => {
+const EditGame = ({ showGameDetail, editGame, game: { game }, match }) => {
   useEffect(() => {
     showGameDetail(match.params.id);
   }, [showGameDetail, match.params.id]);
@@ -19,6 +19,17 @@ const EditGame = ({ showGameDetail, game: { game }, match }) => {
     platform: '',
   });
 
+  useEffect(() => {
+    setFormData({
+      title: game.title,
+      description: game.description,
+      displayPic: game.displayPic,
+      trailerLink: game.trailerLink,
+      category: game.category,
+      platform: game.platform,
+    });
+  }, [game]);
+
   const {
     title,
     description,
@@ -31,25 +42,17 @@ const EditGame = ({ showGameDetail, game: { game }, match }) => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     addGame({
-  //       title,
-  //       description,
-  //       displayPic,
-  //       trailerLink,
-  //       category,
-  //       platform,
-  //     });
-  //     setFormData({
-  //       title: '',
-  //       description: '',
-  //       displayPic: '',
-  //       trailerLink: '',
-  //       category: '',
-  //       platform: '',
-  //     });
-  //   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    editGame(match.params.id, {
+      title,
+      description,
+      displayPic,
+      trailerLink,
+      category,
+      platform,
+    });
+  };
 
   return (
     <div className="mt-3 mr-5 ml-5 mb-5">
@@ -59,7 +62,7 @@ const EditGame = ({ showGameDetail, game: { game }, match }) => {
           Back
         </Button>
       </LinkContainer>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group controlId="title">
           <Form.Label>Game Title</Form.Label>
           <Form.Control
@@ -67,7 +70,7 @@ const EditGame = ({ showGameDetail, game: { game }, match }) => {
             placeholder="Enter title"
             sm={2}
             name="title"
-            value={game.title || ''}
+            value={title || ''}
             onChange={onChange}
             required
           />
@@ -78,7 +81,7 @@ const EditGame = ({ showGameDetail, game: { game }, match }) => {
             as="textarea"
             rows={6}
             name="description"
-            value={game.description || ''}
+            value={description || ''}
             onChange={onChange}
             required
           />
@@ -89,7 +92,7 @@ const EditGame = ({ showGameDetail, game: { game }, match }) => {
             type="text"
             placeholder="Enter url"
             name="displayPic"
-            value={game.displayPic || ''}
+            value={displayPic || ''}
             onChange={onChange}
             required
           />
@@ -100,7 +103,7 @@ const EditGame = ({ showGameDetail, game: { game }, match }) => {
             type="text"
             placeholder="Enter url"
             name="trailerLink"
-            value={game.trailerLink || ''}
+            value={trailerLink || ''}
             onChange={onChange}
             required
           />
@@ -111,7 +114,7 @@ const EditGame = ({ showGameDetail, game: { game }, match }) => {
             type="text"
             placeholder="Enter category"
             name="category"
-            value={game.category || ''}
+            value={category || ''}
             onChange={onChange}
             required
           />
@@ -122,7 +125,7 @@ const EditGame = ({ showGameDetail, game: { game }, match }) => {
             type="text"
             placeholder="Enter platform"
             name="platform"
-            value={game.platform || ''}
+            value={platform || ''}
             onChange={onChange}
             required
           />
@@ -137,6 +140,7 @@ const EditGame = ({ showGameDetail, game: { game }, match }) => {
 
 EditGame.propTypes = {
   showGameDetail: PropTypes.func.isRequired,
+  editGame: PropTypes.func.isRequired,
   game: PropTypes.object.isRequired,
 };
 
@@ -144,4 +148,4 @@ const mapStateToProps = (state) => ({
   game: state.game,
 });
 
-export default connect(mapStateToProps, { showGameDetail })(EditGame);
+export default connect(mapStateToProps, { showGameDetail, editGame })(EditGame);

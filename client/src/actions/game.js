@@ -36,7 +36,7 @@ export const editGame = (id, game) => async (dispatch) => {
     },
   };
   try {
-    const res = await axios.put(`/api/game/admin/edit${id}`, game, config);
+    const res = await axios.put(`/api/game/admin/edit/${id}`, game, config);
 
     dispatch({
       type: EDIT_GAME,
