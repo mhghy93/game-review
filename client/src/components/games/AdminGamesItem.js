@@ -13,7 +13,9 @@ const AdminGamesItem = ({ game }) => {
         <td>{game.platform}</td>
         <td>{new Date(game.createdAt).toLocaleDateString()}</td>
         <td>
-          <Button variant="info">Details</Button>
+          <LinkContainer to={`/admin/game/${game.id}`}>
+            <Button variant="info">Details</Button>
+          </LinkContainer>
         </td>
         <td>
           <LinkContainer to={`/admin/game/edit/${game.id}`}>

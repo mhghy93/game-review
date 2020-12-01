@@ -16,7 +16,7 @@ function App() {
     if (pathname.includes('/admin')) {
       store.dispatch(loadAdmin());
     }
-  }, []);
+  }, [pathname]);
 
   return (
     <Fragment>

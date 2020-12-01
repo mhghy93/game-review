@@ -11,6 +11,7 @@ import AdminShowGames from '../games/AdminShowGames';
 import ShowUsers from '../admin/ShowUsers';
 import EditGame from '../games/EditGame';
 import NotFound from '../pages/NotFound';
+import AdminGameDetail from '../games/AdminGameDetail';
 
 const AdminRoutes = () => {
   return (
@@ -48,6 +49,11 @@ const AdminRoutes = () => {
                 exact
                 path="/admin/game/edit/:id"
                 component={EditGame}
+              />
+              <AdminPrivateRoute
+                exact
+                path="/admin/game/:id"
+                component={AdminGameDetail}
               />
               <Route component={NotFound} />
             </Switch>
