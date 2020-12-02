@@ -65,6 +65,34 @@ exports.showAllUsers = async (req, res) => {
   }
 };
 
+exports.showUserDetail = async (req, res) => {
+  try {
+    const user = await User.findOne({
+      attributes: ['firstname', 'lastname', 'username', 'email', 'createdAt'],
+      where: { id: req.params.id, [Op.and]: [{ isAdmin: false }] },
+    });
+
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
+
+exports.showUserReviews = async (req, res) => {
+  try {
+    const review = await Review.findAll({
+      attributes: ['id', 'review', 'gameId', 'userId', 'rating', 'createdAt'],
+      where: { userId: req.params.id },
+    });
+
+    res.json(review);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
+
 exports.loadAdmin = async (req, res) => {
   try {
     const profile = await User.findOne({

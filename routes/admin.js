@@ -15,6 +15,10 @@ router.get('/', isAdmin, adminController.loadAdmin);
 
 router.get('/show/users', isAdmin, adminController.showAllUsers);
 
+router.get('/show/user/:id', isAdmin, adminController.showUserDetail);
+
+router.get('/show/user/:id/reviews', isAdmin, adminController.showUserReviews);
+
 router.delete('/delete/user/:id', isAdmin, adminController.deleteUser);
 
 router.delete('/delete/review/:id', isAdmin, adminController.deleteUserReview);
