@@ -84,5 +84,16 @@ export const showGameDetail = (id) => async (dispatch) => {
 
 export const deleteGame = (id) => async (dispatch) => {
   try {
-  } catch (err) {}
+    await axios.delete(`/api/game/admin/delete/${id}`);
+
+    dispatch({
+      type: DELETE_GAME,
+      payload: id,
+    });
+  } catch (err) {
+    dispatch({
+      type: GAME_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
 };

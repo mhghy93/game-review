@@ -41,7 +41,10 @@ export default function (state = initialState, action) {
         ),
       };
     case DELETE_GAME:
-      return state;
+      return {
+        ...state,
+        games: state.games.filter((game) => game.id !== payload),
+      };
     case GAME_ERROR:
       return {
         ...state,
