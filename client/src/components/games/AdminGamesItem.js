@@ -1,9 +1,16 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { LinkContainer } from 'react-router-bootstrap';
+import DeleteGame from './DeleteGame';
 
 const AdminGamesItem = ({ game }) => {
+  const [modalShow, setModalShow] = useState(false);
+
+  const handleDeleteModal = () => {
+    setModalShow(false);
+  };
+
   return (
     <Fragment>
       <tr>
@@ -23,7 +30,14 @@ const AdminGamesItem = ({ game }) => {
           </LinkContainer>
         </td>
         <td>
-          <Button variant="danger">Delete</Button>
+          <Button variant="danger" onClick={() => setModalShow(true)}>
+            Delete
+          </Button>
+          <DeleteGame
+            id={game.id}
+            show={modalShow}
+            onHide={handleDeleteModal}
+          />
         </td>
       </tr>
     </Fragment>
