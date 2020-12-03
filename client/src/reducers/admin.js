@@ -5,6 +5,8 @@ import {
   ADMIN_LOADED,
   ADMIN_AUTH_ERROR,
   SHOW_ALL_USERS,
+  SHOW_USER_DETAIL,
+  SHOW_USER_REVIEWS,
   SHOW_USERS_ERROR,
   DELETE_USER_REVIEW,
   DELETE_USER_ACCOUNT,
@@ -12,6 +14,8 @@ import {
 
 const initialState = {
   users: [],
+  user: {},
+  reviews: [],
   token: localStorage.getItem('token'),
   isAuthenticated: false,
   loading: true,
@@ -52,7 +56,20 @@ export default function (state = initialState, action) {
     case SHOW_ALL_USERS:
       return {
         ...state,
+        loading: false,
         users: payload,
+      };
+    case SHOW_USER_DETAIL:
+      return {
+        ...state,
+        loading: false,
+        user: payload,
+      };
+    case SHOW_USER_REVIEWS:
+      return {
+        ...state,
+        loading: false,
+        reviews: payload,
       };
     case SHOW_USERS_ERROR:
       return {

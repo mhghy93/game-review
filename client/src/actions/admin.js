@@ -5,6 +5,8 @@ import {
   ADMIN_LOADED,
   ADMIN_AUTH_ERROR,
   SHOW_ALL_USERS,
+  SHOW_USER_DETAIL,
+  SHOW_USER_REVIEWS,
   SHOW_USERS_ERROR,
   DELETE_USER_REVIEW,
   DELETE_USER_ACCOUNT,
@@ -66,6 +68,38 @@ export const showUsers = () => async (dispatch) => {
 
     dispatch({
       type: SHOW_ALL_USERS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: SHOW_USERS_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const showUserDetail = (id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/admin/show/user/${id}`);
+
+    dispatch({
+      type: SHOW_USER_DETAIL,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: SHOW_USERS_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const showUserReviews = (id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/admin/show/user/${id}/reviews`);
+
+    dispatch({
+      type: SHOW_USER_REVIEWS,
       payload: res.data,
     });
   } catch (err) {
