@@ -56,19 +56,16 @@ export default function (state = initialState, action) {
     case SHOW_ALL_USERS:
       return {
         ...state,
-        loading: false,
         users: payload,
       };
     case SHOW_USER_DETAIL:
       return {
         ...state,
-        loading: false,
         user: payload,
       };
     case SHOW_USER_REVIEWS:
       return {
         ...state,
-        loading: false,
         reviews: payload,
       };
     case SHOW_USERS_ERROR:

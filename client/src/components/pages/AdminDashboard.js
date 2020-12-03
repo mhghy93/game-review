@@ -6,7 +6,7 @@ import { loadAdmin } from '../../actions/admin';
 const AdminDashboard = ({ loadAdmin, admin }) => {
   useEffect(() => {
     loadAdmin();
-  }, []);
+  }, [loadAdmin]);
 
   return (
     <Fragment>

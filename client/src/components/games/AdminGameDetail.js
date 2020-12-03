@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Badge, Image, Button, Row, Col } from 'react-bootstrap';
+import { Badge, Image, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { showGameDetail } from '../../actions/game';
 
