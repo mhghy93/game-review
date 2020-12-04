@@ -1,9 +1,16 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { LinkContainer } from 'react-router-bootstrap';
+import DeleteUser from './DeleteUser';
 
 const UsersItem = ({ user }) => {
+  const [modalShow, setModalShow] = useState(false);
+
+  const handleDeleteModal = () => {
+    setModalShow(false);
+  };
+
   return (
     <Fragment>
       <tr>
@@ -17,7 +24,14 @@ const UsersItem = ({ user }) => {
           </LinkContainer>
         </td>
         <td>
-          <Button variant="danger">Delete</Button>
+          <Button variant="danger" onClick={() => setModalShow(true)}>
+            Delete
+          </Button>
+          <DeleteUser
+            id={user.id}
+            show={modalShow}
+            onHide={handleDeleteModal}
+          />
         </td>
       </tr>
     </Fragment>

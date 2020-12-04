@@ -45,7 +45,6 @@ export default function (state = initialState, action) {
     case ADMIN_LOGOUT:
     case ADMIN_LOGIN_FAIL:
     case ADMIN_AUTH_ERROR:
-    case DELETE_USER_ACCOUNT:
       localStorage.removeItem('token');
       return {
         ...state,
@@ -73,6 +72,11 @@ export default function (state = initialState, action) {
         ...state,
         error: payload,
         loading: false,
+      };
+    case DELETE_USER_ACCOUNT:
+      return {
+        ...state,
+        users: state.users.filter((user) => user.id !== payload),
       };
     default:
       return state;
