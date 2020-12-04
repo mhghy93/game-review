@@ -67,6 +67,11 @@ export default function (state = initialState, action) {
         ...state,
         reviews: payload,
       };
+    case DELETE_USER_REVIEW:
+      return {
+        ...state,
+        reviews: state.reviews.filter((review) => review.id !== payload),
+      };
     case SHOW_USERS_ERROR:
       return {
         ...state,

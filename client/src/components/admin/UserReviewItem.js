@@ -1,13 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Row, Col, Card, Button } from 'react-bootstrap';
+import DeleteUserReview from './DeleteUserReview';
 import { showGameDetail } from '../../actions/game';
 
 const UserReviewItem = ({ review, game: { game }, showGameDetail }) => {
   useEffect(() => {
     showGameDetail(review.gameId);
   }, [showGameDetail]);
+
+  const [modalShow, setModalShow] = useState(false);
+
+  const handleDeleteModal = () => {
+    setModalShow(false);
+  };
 
   return (
     <Card className="shadow bg-white rounded mb-3">
@@ -71,7 +78,14 @@ const UserReviewItem = ({ review, game: { game }, showGameDetail }) => {
         <Row>
           <Col></Col>
           <Col>
-            <Button variant="danger">Delete</Button>
+            <Button variant="danger" onClick={() => setModalShow(true)}>
+              Delete Review
+            </Button>
+            <DeleteUserReview
+              id={review.id}
+              show={modalShow}
+              onHide={handleDeleteModal}
+            />
           </Col>
         </Row>
       </Card.Body>

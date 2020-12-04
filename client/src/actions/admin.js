@@ -110,6 +110,22 @@ export const showUserReviews = (id) => async (dispatch) => {
   }
 };
 
+export const deleteUserReview = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`/api/admin/delete/review/${id}`);
+
+    dispatch({
+      type: DELETE_USER_REVIEW,
+      payload: id,
+    });
+  } catch (err) {
+    dispatch({
+      type: SHOW_USERS_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
 export const deleteUser = (id) => async (dispatch) => {
   try {
     await axios.delete(`/api/admin/delete/user/${id}`);
