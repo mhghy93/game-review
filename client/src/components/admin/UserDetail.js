@@ -3,21 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { showUserDetail, showUserReviews } from '../../actions/admin';
+import { showUserDetail } from '../../actions/admin';
+import UserReviews from './UserReviews';
 
-const UserDetail = ({
-  admin: { user },
-  showUserDetail,
-  showUserReviews,
-  match,
-}) => {
+const UserDetail = ({ admin: { user }, showUserDetail, match }) => {
   useEffect(() => {
     showUserDetail(match.params.id);
   }, [showUserDetail, match.params.id]);
-
-  useEffect(() => {
-    showUserReviews(match.params.id);
-  }, [showUserReviews, match.params.id]);
 
   return (
     <div className="mt-3 mr-5 ml-5 mb-5">
@@ -71,6 +63,7 @@ const UserDetail = ({
           </Row>
         </Card.Body>
       </Card>
+      <UserReviews id={match.params.id} />
     </div>
   );
 };
@@ -78,13 +71,10 @@ const UserDetail = ({
 UserDetail.propTypes = {
   admin: PropTypes.object.isRequired,
   showUserDetail: PropTypes.func.isRequired,
-  showUserReviews: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   admin: state.admin,
 });
 
-export default connect(mapStateToProps, { showUserDetail, showUserReviews })(
-  UserDetail
-);
+export default connect(mapStateToProps, { showUserDetail })(UserDetail);
