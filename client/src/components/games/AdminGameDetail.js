@@ -22,7 +22,7 @@ const AdminGameDetail = ({ showGameDetail, game: { game }, match }) => {
       <Image src={game.displayPic} thumbnail />
       <p className="mt-3">{game.description}</p>
 
-      <a href={game.trailerLink} target="_blank">
+      <a href={game.trailerLink} rel="noopener noreferrer" target="_blank">
         <Badge className="p-3 mr-3" variant="warning" pill>
           Trailer
         </Badge>

@@ -8,7 +8,7 @@ import { showGameDetail } from '../../actions/game';
 const UserReviewItem = ({ review, game: { game }, showGameDetail }) => {
   useEffect(() => {
     showGameDetail(review.gameId);
-  }, [showGameDetail]);
+  }, [showGameDetail, review.gameId]);
 
   const [modalShow, setModalShow] = useState(false);
 

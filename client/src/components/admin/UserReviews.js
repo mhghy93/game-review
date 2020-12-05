@@ -7,7 +7,7 @@ import UserReviewItem from './UserReviewItem';
 const UserReviews = ({ id, admin: { reviews }, showUserReviews }) => {
   useEffect(() => {
     showUserReviews(id);
-  }, [showUserReviews]);
+  }, [showUserReviews, id]);
 
   return (
     <div className="mt-5">
