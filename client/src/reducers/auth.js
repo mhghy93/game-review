@@ -10,6 +10,7 @@ import {
 const initialState = {
   token: localStorage.getItem('token'),
   isUserAuthenticated: false,
+  user: {},
   loading: true,
 };
 
@@ -22,7 +23,7 @@ export default function (state = initialState, action) {
         ...state,
         isAuthenticated: true,
         loading: false,
-        adminUser: payload,
+        user: payload,
       };
     case USER_LOGIN_SUCCESS:
       localStorage.setItem('token', payload.token);

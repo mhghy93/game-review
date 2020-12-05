@@ -4,6 +4,7 @@ import UserRoutes from './components/routes/UserRoutes';
 import './App.css';
 import setAuthToken from './utils/setAuthToken';
 import { loadAdmin } from './actions/admin';
+import { loadUser } from './actions/auth';
 import store from './store';
 
 if (localStorage.token) {
@@ -15,6 +16,8 @@ function App() {
   useEffect(() => {
     if (pathname.includes('/admin')) {
       store.dispatch(loadAdmin());
+    } else {
+      store.dispatch(loadUser());
     }
   }, [pathname]);
 
