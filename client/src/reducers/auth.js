@@ -21,7 +21,7 @@ export default function (state = initialState, action) {
     case USER_LOADED:
       return {
         ...state,
-        isAuthenticated: true,
+        isUserAuthenticated: true,
         loading: false,
         user: payload,
       };
@@ -30,7 +30,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         ...payload,
-        isAuthenticated: true,
+        isUserAuthenticated: true,
         loading: false,
       };
     case USER_LOGOUT:
@@ -40,7 +40,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         token: null,
-        isAuthenticated: false,
+        isUserAuthenticated: false,
         loading: false,
       };
     default:
