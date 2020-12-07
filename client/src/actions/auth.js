@@ -1,5 +1,6 @@
 import {
   REGISTER_USER,
+  REGISTER_FAIL,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGOUT,
@@ -25,6 +26,35 @@ export const loadUser = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: USER_AUTH_ERROR,
+    });
+  }
+};
+
+export const userRegister = (formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  try {
+    const res = await axios.post('/api/user/register', formData, config);
+
+    dispatch({
+      type: REGISTER_USER,
+      payload: res.data,
+    });
+
+    dispatch(loadUser());
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    dispatch({
+      type: REGISTER_FAIL,
     });
   }
 };
