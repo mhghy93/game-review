@@ -7,6 +7,7 @@ import Home from '../pages/Home';
 import Login from '../auth/Login';
 import NotFound from '../pages/NotFound';
 import UserProfile from '../profile/UserProfile';
+import ShowAlert from '../layout/ShowAlert';
 
 const UserRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const UserRoutes = () => {
         <NavigationBar />
         <main className="mt-5">
           <Container>
+            <ShowAlert />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />

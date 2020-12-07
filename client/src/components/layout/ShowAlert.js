@@ -1,20 +1,26 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Alert } from 'react-bootstrap';
 
-const ShowAlert = () => {
-  const [show, setShow] = useState(true);
-
+const ShowAlert = ({ alerts }) => {
   return (
     <Fragment>
-      {show ? (
-        <Alert variant="success" onClose={() => setShow(false)} dismissible>
-          Successfully Updated
+      {alerts.map((alert) => (
+        <Alert key={alert.id} variant={alert.alertType}>
+          <p className="text-center">{alert.msg}</p>
         </Alert>
-      ) : (
-        ''
-      )}
+      ))}
     </Fragment>
   );
 };
 
-export default ShowAlert;
+ShowAlert.propTypes = {
+  alerts: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  alerts: state.alert,
+});
+
+export default connect(mapStateToProps)(ShowAlert);

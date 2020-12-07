@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Form, Button, Card } from 'react-bootstrap';
 import { userLogin } from '../../actions/auth';
-import ShowAlert from '../layout/ShowAlert';
 
 const Login = ({ userLogin, auth: { isUserAuthenticated } }) => {
   const [formData, setFormData] = useState({
@@ -31,7 +30,6 @@ const Login = ({ userLogin, auth: { isUserAuthenticated } }) => {
       <div className="row justify-content-center px-5 pt-5 pb-5">
         <Card className="shadow bg-white rounded">
           <Card.Body>
-            {/* <ShowAlert /> */}
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>

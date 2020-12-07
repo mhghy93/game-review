@@ -13,6 +13,7 @@ import EditGame from '../games/EditGame';
 import NotFound from '../pages/NotFound';
 import AdminGameDetail from '../games/AdminGameDetail';
 import UserDetail from '../admin/UserDetail';
+import ShowAlert from '../layout/ShowAlert';
 
 const AdminRoutes = () => {
   return (
@@ -24,6 +25,7 @@ const AdminRoutes = () => {
         <div id="page-content-wrapper">
           <AdminNavbar />
           <Container>
+            <ShowAlert />
             <Switch>
               <Route exact path="/admin/login" component={AdminLogin} />
               <AdminPrivateRoute
