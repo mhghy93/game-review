@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { userLogout } from '../../actions/auth';
 
-const NavigationBar = () => {
+const NavigationBar = ({ auth: { isUserAuthenticated }, userLogout }) => {
   return (
     <Navbar
       collapseOnSelect
@@ -10,7 +14,13 @@ const NavigationBar = () => {
       variant="light"
       sticky="top"
     >
-      <Navbar.Brand href="#home">Game Reviews</Navbar.Brand>
+      <LinkContainer to="/">
+        <Navbar.Brand>
+          {' '}
+          <i className="fab fa-fantasy-flight-games"></i> Game Reviews
+        </Navbar.Brand>
+      </LinkContainer>
+
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
@@ -28,14 +38,44 @@ const NavigationBar = () => {
           </NavDropdown>
         </Nav>
         <Nav>
-          <Nav.Link href="#deets">Sign up</Nav.Link>
-          <Nav.Link eventKey={2} href="#memes">
-            Log In
-          </Nav.Link>
+          {!isUserAuthenticated ? (
+            <Fragment>
+              <Nav.Link href="#deets">
+                {' '}
+                <i class="fas fa-user-plus"></i> Sign up
+              </Nav.Link>
+              <LinkContainer to="/login">
+                <Nav.Link eventKey={2}>
+                  <i className="fas fa-sign-in-alt"></i> Log In
+                </Nav.Link>
+              </LinkContainer>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <LinkContainer to="/user/profile">
+                <Nav.Link>
+                  {' '}
+                  <i class="fas fa-user"></i> Profile
+                </Nav.Link>
+              </LinkContainer>
+              <Nav.Link onClick={userLogout} eventKey={2}>
+                <i className="fas fa-sign-out-alt"></i> Logout
+              </Nav.Link>
+            </Fragment>
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
   );
 };
 
-export default NavigationBar;
+NavigationBar.propTypes = {
+  auth: PropTypes.object.isRequired,
+  userLogout: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { userLogout })(NavigationBar);
