@@ -8,6 +8,7 @@ import Login from '../auth/Login';
 import NotFound from '../pages/NotFound';
 import UserProfile from '../profile/UserProfile';
 import ShowAlert from '../layout/ShowAlert';
+import Register from '../auth/Register';
 
 const UserRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const UserRoutes = () => {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
               <UserPrivateRoute path="/user/profile" component={UserProfile} />
               <Route component={NotFound} />
             </Switch>

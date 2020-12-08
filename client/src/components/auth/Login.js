@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Form, Button, Card } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { userLogin } from '../../actions/auth';
 
 const Login = ({ userLogin, auth: { isUserAuthenticated } }) => {
@@ -64,9 +65,11 @@ const Login = ({ userLogin, auth: { isUserAuthenticated } }) => {
                 Log In
               </Button>
             </Form>
-            <Button className="mt-3" variant="link" block>
-              Don't have an account?
-            </Button>
+            <LinkContainer to="/register">
+              <Button className="mt-3" variant="link" block>
+                Don't have an account?
+              </Button>
+            </LinkContainer>
           </Card.Body>
         </Card>
       </div>

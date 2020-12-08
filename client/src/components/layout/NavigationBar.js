@@ -40,10 +40,12 @@ const NavigationBar = ({ auth: { isUserAuthenticated }, userLogout }) => {
         <Nav>
           {!isUserAuthenticated ? (
             <Fragment>
-              <Nav.Link href="#deets">
-                {' '}
-                <i className="fas fa-user-plus"></i> Sign up
-              </Nav.Link>
+              <LinkContainer to="/register">
+                <Nav.Link>
+                  {' '}
+                  <i className="fas fa-user-plus"></i> Register
+                </Nav.Link>
+              </LinkContainer>
               <LinkContainer to="/login">
                 <Nav.Link eventKey={2}>
                   <i className="fas fa-sign-in-alt"></i> Log In
@@ -55,7 +57,7 @@ const NavigationBar = ({ auth: { isUserAuthenticated }, userLogout }) => {
               <LinkContainer to="/user/profile">
                 <Nav.Link>
                   {' '}
-                  <i class="fas fa-user"></i> Profile
+                  <i className="fas fa-user"></i> Profile
                 </Nav.Link>
               </LinkContainer>
               <Nav.Link onClick={userLogout} eventKey={2}>
