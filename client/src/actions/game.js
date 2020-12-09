@@ -7,6 +7,7 @@ import {
   GAME_ERROR,
 } from './types';
 import axios from 'axios';
+import { setAlert } from './alert';
 
 export const addGame = (game) => async (dispatch) => {
   const config = {
@@ -42,6 +43,8 @@ export const editGame = (id, game) => async (dispatch) => {
       type: EDIT_GAME,
       payload: res.data,
     });
+
+    dispatch(setAlert('Game updated', 'success'));
   } catch (err) {
     dispatch({
       type: GAME_ERROR,

@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
+import Games from '../games/Games';
 
 const Home = () => {
   return (
     <Fragment>
-      <h1>game review</h1>
+      <Games />
     </Fragment>
   );
 };

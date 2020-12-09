@@ -24,7 +24,7 @@ const AdminGameDetail = ({ showGameDetail, game: { game }, match }) => {
 
       <a href={game.trailerLink} rel="noopener noreferrer" target="_blank">
         <Badge className="p-3 mr-3" variant="warning" pill>
-          Trailer
+          <i className="fas fa-play"></i> Trailer
         </Badge>
       </a>
       <Badge className="p-3" variant="danger" pill>
