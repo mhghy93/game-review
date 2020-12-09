@@ -33,12 +33,13 @@ const Register = ({
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setAlert('Passwords do not match', 'danger');
     } else {
       userRegister({ firstname, lastname, username, email, password });
+      return <Redirect to="/login" />;
     }
   };
 
@@ -48,9 +49,13 @@ const Register = ({
 
   return (
     <Fragment>
-      <Row className="justify-content-center px-5 pt-2 pb-2">
+      <Row className="justify-content-center px-5 pt-2 pb-5">
         <Col lg={8}>
           <Card className="shadow bg-white rounded">
+            <div className="bg-secondary text-white">
+              {' '}
+              <h5 className="text-center mt-3">Register</h5>
+            </div>
             <Card.Body>
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formBasicFirstName">

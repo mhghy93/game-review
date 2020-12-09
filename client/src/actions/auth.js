@@ -30,22 +30,36 @@ export const loadUser = () => async (dispatch) => {
   }
 };
 
-export const userRegister = (formData) => async (dispatch) => {
+export const userRegister = ({
+  firstname,
+  lastname,
+  username,
+  email,
+  password,
+}) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   };
 
+  const body = JSON.stringify({
+    firstname,
+    lastname,
+    username,
+    email,
+    password,
+  });
+
   try {
-    const res = await axios.post('/api/user/register', formData, config);
+    const res = await axios.post('/api/user/register', body, config);
 
     dispatch({
       type: REGISTER_USER,
       payload: res.data,
     });
 
-    dispatch(loadUser());
+    dispatch(setAlert('Successfully registered ,you can login now', 'success'));
   } catch (err) {
     const errors = err.response.data.errors;
 

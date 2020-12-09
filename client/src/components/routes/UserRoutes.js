@@ -22,7 +22,11 @@ const UserRoutes = () => {
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
-              <UserPrivateRoute path="/user/profile" component={UserProfile} />
+              <UserPrivateRoute
+                exact
+                path="/user/profile"
+                component={UserProfile}
+              />
               <Route component={NotFound} />
             </Switch>
           </Container>
