@@ -9,6 +9,7 @@ import NotFound from '../pages/NotFound';
 import UserProfile from '../profile/UserProfile';
 import ShowAlert from '../layout/ShowAlert';
 import Register from '../auth/Register';
+import GameDetail from '../games/GameDetail';
 
 const UserRoutes = () => {
   return (
@@ -22,6 +23,7 @@ const UserRoutes = () => {
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
+              <Route exact path="/game/:id" component={GameDetail} />
               <UserPrivateRoute
                 exact
                 path="/user/profile"

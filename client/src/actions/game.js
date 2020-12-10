@@ -22,6 +22,8 @@ export const addGame = (game) => async (dispatch) => {
       type: ADD_GAME,
       payload: res.data,
     });
+
+    dispatch(setAlert('Game added', 'success'));
   } catch (err) {
     dispatch({
       type: GAME_ERROR,
