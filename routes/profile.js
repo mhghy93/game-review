@@ -7,12 +7,12 @@ const {
 const profileController = require('../controllers/Profile');
 const router = express.Router();
 
-router.get('/', isAuthenticated, notAdmin, profileController.showProfile);
+router.get('/', notAdmin, isAuthenticated, profileController.showProfile);
 
 router.put(
   '/edit',
-  isAuthenticated,
   notAdmin,
+  isAuthenticated,
   profileUpdateValidations(),
   validate,
   profileController.editProfile
@@ -20,8 +20,8 @@ router.put(
 
 router.delete(
   '/delete',
-  isAuthenticated,
   notAdmin,
+  isAuthenticated,
   profileController.deleteProfile
 );
 

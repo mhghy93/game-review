@@ -30,6 +30,13 @@ const GameDetail = ({ showGameDetail, game: { game }, match }) => {
       <Badge className="p-3 ml-3" variant="success" pill>
         {game.platform}
       </Badge>
+      <div className="mt-5">
+        <LinkContainer to={`/game/review/${game.id}/add`}>
+          <Button variant="warning">
+            <i className="fas fa-plus"></i> Add Review
+          </Button>
+        </LinkContainer>
+      </div>
     </div>
   );
 };

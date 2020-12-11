@@ -10,6 +10,7 @@ import UserProfile from '../profile/UserProfile';
 import ShowAlert from '../layout/ShowAlert';
 import Register from '../auth/Register';
 import GameDetail from '../games/GameDetail';
+import AddReview from '../reviews/AddReview';
 
 const UserRoutes = () => {
   return (
@@ -28,6 +29,11 @@ const UserRoutes = () => {
                 exact
                 path="/user/profile"
                 component={UserProfile}
+              />
+              <UserPrivateRoute
+                exact
+                path="/game/review/:gameId/add"
+                component={AddReview}
               />
               <Route component={NotFound} />
             </Switch>
