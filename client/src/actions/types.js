@@ -31,3 +31,11 @@ export const USER_AUTH_ERROR = 'USER_AUTH_ERROR';
 // alert
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
+
+// game reviews
+export const ADD_GAME_REVIEW = 'ADD_GAME_REVIEW';
+export const SHOW_ALL_GAME_REVIEWS = 'SHOW_ALL_GAME_REVIEWS';
+export const GAME_REVIEW_DETAIL = 'GAME_REVIEW_DETAIL';
+export const EDIT_GAME_REVIEW = 'EDIT_GAME_REVIEW';
+export const DELETE_GAME_REVIEW = 'DELETE_GAME_REVIEW';
+export const GAME_REVIEW_ERROR = 'GAME_REVIEW_ERROR';
