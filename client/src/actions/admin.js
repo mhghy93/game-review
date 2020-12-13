@@ -67,6 +67,8 @@ export const adminLogin = (email, password) => async (dispatch) => {
 
 export const adminLogout = () => (dispatch) => {
   dispatch({ type: ADMIN_LOGOUT });
+
+  dispatch(setAlert('Successfully Logged Out', 'success'));
 };
 
 export const showUsers = () => async (dispatch) => {

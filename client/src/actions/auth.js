@@ -106,4 +106,5 @@ export const userLogin = (email, password) => async (dispatch) => {
 
 export const userLogout = () => (dispatch) => {
   dispatch({ type: USER_LOGOUT });
+  dispatch(setAlert('Successfully Logged Out', 'success'));
 };
