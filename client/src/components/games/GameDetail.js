@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Badge, Image, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { showGameDetail } from '../../actions/game';
+import Reviews from '../reviews/Reviews';
 
 const GameDetail = ({ showGameDetail, game: { game }, match }) => {
   useEffect(() => {
@@ -37,6 +38,7 @@ const GameDetail = ({ showGameDetail, game: { game }, match }) => {
           </Button>
         </LinkContainer>
       </div>
+      <Reviews id={match.params.id} />
     </div>
   );
 };

@@ -44,7 +44,7 @@ export const addGameReview = (review, gameId) => async (dispatch) => {
 
 export const showAllGameReviews = (gameId) => async (dispatch) => {
   try {
-    const res = await axios.get(`api/game/review/${gameId}/all`);
+    const res = await axios.get(`/api/game/review/${gameId}/all`);
 
     dispatch({
       type: SHOW_ALL_GAME_REVIEWS,
@@ -60,7 +60,7 @@ export const showAllGameReviews = (gameId) => async (dispatch) => {
 
 export const showGameReviewDetail = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(`api/game/review/reviewDetails/${id}`);
+    const res = await axios.get(`/api/game/review/reviewDetails/${id}`);
 
     dispatch({
       type: GAME_REVIEW_DETAIL,
