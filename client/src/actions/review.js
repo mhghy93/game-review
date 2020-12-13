@@ -29,9 +29,15 @@ export const addGameReview = (review, gameId) => async (dispatch) => {
 
     dispatch(setAlert('Review added', 'success'));
   } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+
     dispatch({
       type: GAME_REVIEW_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      payload: errors,
     });
   }
 };
@@ -46,7 +52,7 @@ export const showAllGameReviews = (gameId) => async (dispatch) => {
     });
   } catch (err) {
     dispatch({
-      type: GAME_ERROR,
+      type: GAME_REVIEW_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
