@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReviewItem from './ReviewItem';
 import { showAllGameReviews } from '../../actions/review';
+import AverageRating from './AverageRating';
 
 const Reviews = ({ id, review: { reviews }, showAllGameReviews }) => {
   useEffect(() => {
@@ -12,7 +13,10 @@ const Reviews = ({ id, review: { reviews }, showAllGameReviews }) => {
   return (
     <Fragment>
       <div className="mt-5">
-        <h5 className="mb-3">User Reviews</h5>
+        <div className="mb-3">
+          <h5>User Reviews</h5>
+          <AverageRating />
+        </div>
         {reviews.length > 0 ? (
           reviews.map((review) => (
             <ReviewItem key={review.id} review={review} />
