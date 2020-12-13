@@ -1,5 +1,6 @@
 const Review = require('../models/Review');
 const { Op } = require('sequelize');
+const { sequelize } = require('../models/Review');
 
 exports.showAllReviews = async (req, res) => {
   try {
@@ -7,6 +8,21 @@ exports.showAllReviews = async (req, res) => {
       where: { gameId: req.params.gameId },
     });
     res.json(reviews);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
+
+exports.showAverageRating = async (req, res) => {
+  try {
+    const averageRating = await Review.findOne({
+      attributes: [
+        [sequelize.fn('avg', sequelize.col('rating')), 'averageRating'],
+      ],
+      where: { gameId: req.params.gameId },
+    });
+    res.json(averageRating);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');

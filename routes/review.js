@@ -6,6 +6,8 @@ const reviewController = require('../controllers/Review');
 
 router.get('/:gameId/all', reviewController.showAllReviews);
 
+router.get('/:gameId/average', reviewController.showAverageRating);
+
 router.get('/reviewDetails/:id', reviewController.showReview);
 
 router.post(
