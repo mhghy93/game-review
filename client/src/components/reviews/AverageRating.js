@@ -1,20 +1,27 @@
-import React from 'react';
-import ReactStars from 'react-rating-stars-component';
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
-const AverageRating = () => {
+const AverageRating = ({ rating }) => {
   return (
-    <ReactStars
-      count={5}
-      size={24}
-      value={4.5}
-      edit={false}
-      isHalf={true}
-      emptyIcon={<i className="far fa-star"></i>}
-      halfIcon={<i className="fa fa-star-half-alt"></i>}
-      fullIcon={<i className="fa fa-star"></i>}
-      activeColor="#ffd700"
-    />
+    <Fragment>
+      {Number(rating) >= 0 ? (
+        <Fragment>
+          <p>
+            <span className="text-warning">
+              <i className="fa fa-star"></i>{' '}
+            </span>
+            {Number(rating).toString()}
+          </p>
+        </Fragment>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </Fragment>
   );
+};
+
+AverageRating.propTypes = {
+  rating: PropTypes.string,
 };
 
 export default AverageRating;
