@@ -6,7 +6,12 @@ const ReviewItem = ({ review }) => {
   return (
     <Fragment>
       <Card className="mb-3">
-        <p className="ml-3 mt-3">Rating {review.rating}</p>
+        <p className="ml-3 mt-3">
+          <span className="text-warning">
+            <i className="fa fa-star"></i>{' '}
+          </span>{' '}
+          {review.rating}
+        </p>
         <Card.Subtitle className="ml-3 text-muted">
           {' '}
           Reviewed on {new Date(review.createdAt).toLocaleDateString()}
