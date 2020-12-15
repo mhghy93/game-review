@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Badge, Image, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { showGameDetail } from '../../actions/game';
+import GameCategory from './GameCategory';
+import GamePlatform from './GamePlatform';
 
 const AdminGameDetail = ({ showGameDetail, game: { game }, match }) => {
   useEffect(() => {
@@ -27,12 +29,8 @@ const AdminGameDetail = ({ showGameDetail, game: { game }, match }) => {
           <i className="fas fa-play"></i> Trailer
         </Badge>
       </a>
-      <Badge className="p-3" variant="danger" pill>
-        {game.category}
-      </Badge>
-      <Badge className="p-3 ml-3" variant="success" pill>
-        {game.platform}
-      </Badge>
+      <GameCategory category={game.category} />
+      <GamePlatform platform={game.platform} />
     </div>
   );
 };

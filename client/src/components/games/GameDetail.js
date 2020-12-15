@@ -5,6 +5,8 @@ import { Badge, Image, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { showGameDetail } from '../../actions/game';
 import Reviews from '../reviews/Reviews';
+import GamePlatform from './GamePlatform';
+import GameCategory from './GameCategory';
 
 const GameDetail = ({ showGameDetail, game: { game }, match }) => {
   useEffect(() => {
@@ -25,12 +27,8 @@ const GameDetail = ({ showGameDetail, game: { game }, match }) => {
           <i className="fas fa-play"></i> Trailer
         </Badge>
       </a>
-      <Badge className="p-3" variant="danger" pill>
-        {game.category}
-      </Badge>
-      <Badge className="p-3 ml-3" variant="success" pill>
-        {game.platform}
-      </Badge>
+      <GameCategory category={game.category} />
+      <GamePlatform platform={game.platform} />
       <div className="mt-5">
         <LinkContainer to={`/game/review/${game.id}/add`}>
           <Button variant="warning">
