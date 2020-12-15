@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import ReactStars from 'react-rating-stars-component';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
@@ -27,6 +28,10 @@ const AddReview = ({ match, addGameReview }) => {
     );
   };
 
+  const ratingChanged = (newRating) => {
+    setFormData({ ...formData, rating: newRating.toString() });
+  };
+
   return (
     <Fragment>
       <LinkContainer to={`/game/${match.params.gameId}`}>
@@ -46,45 +51,15 @@ const AddReview = ({ match, addGameReview }) => {
         </Form.Group>
         <Form.Group controlId="rating">
           <Form.Label>Rate</Form.Label>
-          <Form.Check
-            type="radio"
-            label="1"
-            name="rating"
-            value={1}
-            onChange={handleOnChange}
-            id="rating1"
-          />
-          <Form.Check
-            type="radio"
-            label="2"
-            name="rating"
-            value={2}
-            onChange={handleOnChange}
-            id="rating2"
-          />
-          <Form.Check
-            type="radio"
-            label="3"
-            name="rating"
-            value={3}
-            onChange={handleOnChange}
-            id="rating3"
-          />
-          <Form.Check
-            type="radio"
-            label="4"
-            name="rating"
-            value={4}
-            onChange={handleOnChange}
-            id="rating4"
-          />
-          <Form.Check
-            type="radio"
-            label="5"
-            name="rating"
-            value={5}
-            onChange={handleOnChange}
-            id="rating5"
+          <ReactStars
+            count={5}
+            onChange={ratingChanged}
+            size={24}
+            isHalf={true}
+            emptyIcon={<i className="far fa-star"></i>}
+            halfIcon={<i className="fa fa-star-half-alt"></i>}
+            fullIcon={<i className="fa fa-star"></i>}
+            activeColor="#ffd700"
           />
         </Form.Group>
         <Button variant="warning" type="submit" block>
