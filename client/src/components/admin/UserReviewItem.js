@@ -1,15 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import DeleteUserReview from './DeleteUserReview';
-import { showGameDetail } from '../../actions/game';
 
-const UserReviewItem = ({ review, game: { game }, showGameDetail }) => {
-  useEffect(() => {
-    showGameDetail(review.gameId);
-  }, [showGameDetail, review.gameId]);
-
+const UserReviewItem = ({ review }) => {
   const [modalShow, setModalShow] = useState(false);
 
   const handleDeleteModal = () => {
@@ -34,15 +28,6 @@ const UserReviewItem = ({ review, game: { game }, showGameDetail }) => {
           </Col>
           <Col>
             <p className="font-weight-light">{review.gameId}</p>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col>
-            <p className="font-weight-bold">Game Title</p>
-          </Col>
-          <Col>
-            <p className="font-weight-light">{game.title}</p>
           </Col>
         </Row>
 
@@ -95,12 +80,6 @@ const UserReviewItem = ({ review, game: { game }, showGameDetail }) => {
 
 UserReviewItem.propTypes = {
   review: PropTypes.object.isRequired,
-  game: PropTypes.object.isRequired,
-  showGameDetail: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  game: state.game,
-});
-
-export default connect(mapStateToProps, { showGameDetail })(UserReviewItem);
+export default UserReviewItem;
