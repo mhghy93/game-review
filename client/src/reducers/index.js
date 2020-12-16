@@ -4,6 +4,7 @@ import admin from './admin';
 import auth from './auth';
 import alert from './alert';
 import review from './review';
+import profile from './profile';
 
 export default combineReducers({
   game,
@@ -11,4 +12,5 @@ export default combineReducers({
   auth,
   alert,
   review,
+  profile,
 });
