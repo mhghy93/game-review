@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReviewItem from './ReviewItem';
 import { showAllGameReviews, showAverageRating } from '../../actions/review';
+import { showAllProfiles } from '../../actions/profile';
 import AverageRating from './AverageRating';
 
 const Reviews = ({
   id,
   review: { reviews, averageRating },
+  profile: { profiles },
   showAllGameReviews,
   showAverageRating,
+  showAllProfiles,
 }) => {
   useEffect(() => {
     showAllGameReviews(id);
@@ -18,6 +21,10 @@ const Reviews = ({
   useEffect(() => {
     showAverageRating(id);
   }, [showAverageRating, id]);
+
+  useEffect(() => {
+    showAllProfiles();
+  }, [showAllProfiles]);
 
   return (
     <Fragment>
@@ -28,7 +35,7 @@ const Reviews = ({
         </div>
         {reviews.length > 0 ? (
           reviews.map((review) => (
-            <ReviewItem key={review.id} review={review} />
+            <ReviewItem key={review.id} review={review} profiles={profiles} />
           ))
         ) : (
           <p>No Reviews added</p>
@@ -43,13 +50,16 @@ Reviews.propTypes = {
   review: PropTypes.object.isRequired,
   showAllGameReviews: PropTypes.func.isRequired,
   showAverageRating: PropTypes.func.isRequired,
+  showAllProfiles: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   review: state.review,
+  profile: state.profile,
 });
 
 export default connect(mapStateToProps, {
   showAllGameReviews,
   showAverageRating,
+  showAllProfiles,
 })(Reviews);
