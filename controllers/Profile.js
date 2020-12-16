@@ -64,3 +64,24 @@ exports.deleteProfile = async (req, res) => {
     res.status(500).send('Server error');
   }
 };
+
+exports.showAllProfiles = async (req, res) => {
+  try {
+    const profiles = await User.findAll({
+      attributes: [
+        'id',
+        'firstname',
+        'lastname',
+        'username',
+        'email',
+        'createdAt',
+        'updatedAt',
+      ],
+      where: { isAdmin: false },
+    });
+    res.json(profiles);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};

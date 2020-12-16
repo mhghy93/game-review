@@ -25,4 +25,6 @@ router.delete(
   profileController.deleteProfile
 );
 
+router.get('/all', profileController.showAllProfiles);
+
 module.exports = router;
