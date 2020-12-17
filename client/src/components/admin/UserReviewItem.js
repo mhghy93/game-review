@@ -68,7 +68,13 @@ const UserReviewItem = ({ review, games }) => {
             <p className="font-weight-bold">Rating</p>
           </Col>
           <Col>
-            <p className="font-weight-light">{review.rating}</p>
+            <p className="font-weight-light">
+              {' '}
+              <span className="text-warning">
+                <i className="fa fa-star"></i>{' '}
+              </span>
+              {review.rating}
+            </p>
           </Col>
         </Row>
 
