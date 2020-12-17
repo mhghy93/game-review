@@ -3,7 +3,17 @@ import PropTypes from 'prop-types';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import DeleteUserReview from './DeleteUserReview';
 
-const UserReviewItem = ({ review }) => {
+const UserReviewItem = ({ review, games }) => {
+  let index = 0;
+  if (games.length > 0) {
+    for (let i = 0; i < games.length; i++) {
+      if (games[i].id === review.gameId) {
+        index = i;
+        break;
+      }
+    }
+  }
+
   const [modalShow, setModalShow] = useState(false);
 
   const handleDeleteModal = () => {
@@ -28,6 +38,19 @@ const UserReviewItem = ({ review }) => {
           </Col>
           <Col>
             <p className="font-weight-light">{review.gameId}</p>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <p className="font-weight-bold">Game Title</p>
+          </Col>
+          <Col>
+            {games.length > 0 ? (
+              <p className="font-weight-light">{games[index].title}</p>
+            ) : (
+              <p>Loading...</p>
+            )}
           </Col>
         </Row>
 
@@ -80,6 +103,7 @@ const UserReviewItem = ({ review }) => {
 
 UserReviewItem.propTypes = {
   review: PropTypes.object.isRequired,
+  games: PropTypes.array.isRequired,
 };
 
 export default UserReviewItem;
