@@ -1,8 +1,13 @@
-import { SHOW_ALL_PROFILES, PROFILE_ERROR } from '../actions/types';
+import {
+  SHOW_ALL_PROFILES,
+  USER_REVIEWS,
+  PROFILE_ERROR,
+} from '../actions/types';
 
 const initialState = {
   profiles: [],
   profile: {},
+  reviews: [],
   loading: true,
   error: {},
 };
@@ -15,6 +20,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         profiles: payload,
+        loading: false,
+      };
+    case USER_REVIEWS:
+      return {
+        ...state,
+        reviews: payload,
         loading: false,
       };
     case PROFILE_ERROR:

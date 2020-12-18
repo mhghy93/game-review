@@ -43,4 +43,5 @@ export const GAME_REVIEW_ERROR = 'GAME_REVIEW_ERROR';
 
 // profile
 export const SHOW_ALL_PROFILES = 'SHOW_ALL_PROFILES';
+export const USER_REVIEWS = 'USER_REVIEWS';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
