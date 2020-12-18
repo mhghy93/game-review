@@ -27,4 +27,11 @@ router.delete(
 
 router.get('/all', profileController.showAllProfiles);
 
+router.get(
+  '/reviews',
+  notAdmin,
+  isAuthenticated,
+  profileController.userReviews
+);
+
 module.exports = router;

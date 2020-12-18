@@ -85,3 +85,17 @@ exports.showAllProfiles = async (req, res) => {
     res.status(500).send('Server error');
   }
 };
+
+exports.userReviews = async (req, res) => {
+  try {
+    const reviews = await Review.findAll({
+      attributes: ['id', 'review', 'gameId', 'userId', 'rating', 'createdAt'],
+      where: { userId: req.user.id },
+    });
+
+    res.json(reviews);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
