@@ -6,6 +6,7 @@ import { loadUser } from '../../actions/auth';
 import { userReviews } from '../../actions/profile';
 import { showAllGames } from '../../actions/game';
 import UserReviewItem from './UserReviewItem';
+import UserRatingItem from './UserRatingItem';
 
 const UserProfile = ({
   auth: { user },
@@ -28,18 +29,36 @@ const UserProfile = ({
     <Fragment>
       <Card className="shadow bg-white rounded p-5">
         <Row>
-          <Col xs={6} lg={4}>
+          <Col xs={12} lg={6}>
             <Card.Img
               src="https://res.cloudinary.com/mhghy93/image/upload/v1578161259/blank-profile-picture-973460_1280_xf4t0m.png"
               variant="top"
             />
-          </Col>
-          <Col xs={6} lg={4}>
-            <h5>{user.username}</h5>
+            <h5 className="mt-3">{user.username}</h5>
             <Button variant="success">Edit Profile</Button>
-            <p>Member since {new Date(user.createdAt).toLocaleDateString()}</p>
+            <p className="mt-3">
+              Member since {new Date(user.createdAt).toLocaleDateString()}
+            </p>
+            <p className="mt-3">{reviews.length} games reviewed</p>
+            <div className="mt-5">
+              <h5 className="mb-3">My Ratings</h5>
+              {reviews.length > 0 ? (
+                <Row>
+                  {reviews.map((review) => (
+                    <UserRatingItem
+                      key={review.id}
+                      review={review}
+                      games={games}
+                    />
+                  ))}
+                </Row>
+              ) : (
+                <p>No Ratings</p>
+              )}
+            </div>
           </Col>
-          <Col xs={6} lg={4}>
+          <Col xs={12} lg={6}>
+            <h5>My Reviews</h5>
             {reviews.length > 0 ? (
               reviews.map((review) => (
                 <UserReviewItem key={review.id} review={review} games={games} />
