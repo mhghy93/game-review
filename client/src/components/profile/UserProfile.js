@@ -3,11 +3,26 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 import { loadUser } from '../../actions/auth';
+import { userReviews } from '../../actions/profile';
+import { showAllGames } from '../../actions/game';
+import UserReviewItem from './UserReviewItem';
 
-const UserProfile = ({ auth: { user }, loadUser }) => {
+const UserProfile = ({
+  auth: { user },
+  profile: { reviews },
+  game: { games },
+  loadUser,
+  userReviews,
+  showAllGames,
+}) => {
   useEffect(() => {
     loadUser();
-  }, [loadUser]);
+    userReviews();
+  }, [loadUser, userReviews]);
+
+  useEffect(() => {
+    showAllGames();
+  }, [showAllGames]);
 
   return (
     <Fragment>
@@ -25,7 +40,13 @@ const UserProfile = ({ auth: { user }, loadUser }) => {
             <p>Member since {new Date(user.createdAt).toLocaleDateString()}</p>
           </Col>
           <Col xs={6} lg={4}>
-            Reviews
+            {reviews.length > 0 ? (
+              reviews.map((review) => (
+                <UserReviewItem key={review.id} review={review} games={games} />
+              ))
+            ) : (
+              <p>No Reviews added</p>
+            )}
           </Col>
         </Row>
       </Card>
@@ -36,10 +57,20 @@ const UserProfile = ({ auth: { user }, loadUser }) => {
 UserProfile.propTypes = {
   loadUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  game: PropTypes.object.isRequired,
+  userReviews: PropTypes.func.isRequired,
+  showAllGames: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  profile: state.profile,
+  game: state.game,
 });
 
-export default connect(mapStateToProps, { loadUser })(UserProfile);
+export default connect(mapStateToProps, {
+  loadUser,
+  userReviews,
+  showAllGames,
+})(UserProfile);
