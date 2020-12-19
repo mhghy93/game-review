@@ -2,6 +2,7 @@ import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Card, Row, Col, Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { loadUser } from '../../actions/auth';
 import { userReviews } from '../../actions/profile';
 import { showAllGames } from '../../actions/game';
@@ -35,7 +36,12 @@ const UserProfile = ({
               variant="top"
             />
             <h5 className="mt-3">{user.username}</h5>
-            <Button variant="success">Edit Profile</Button>
+            <LinkContainer to="/user/profile/edit">
+              <Button variant="success">
+                {' '}
+                <i className="fas fa-pencil-alt"></i> Edit Profile
+              </Button>
+            </LinkContainer>
             <p className="mt-3">
               Member since {new Date(user.createdAt).toLocaleDateString()}
             </p>
