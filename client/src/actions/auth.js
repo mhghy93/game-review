@@ -99,6 +99,8 @@ export const editProfile = ({ firstname, lastname, username, email }) => async (
       payload: res.data,
     });
 
+    dispatch(loadUser());
+
     dispatch(setAlert('Profile Updated', 'success'));
   } catch (err) {
     const errors = err.response.data.errors;
@@ -131,6 +133,8 @@ export const userLogin = (email, password) => async (dispatch) => {
     });
 
     dispatch(loadUser());
+
+    dispatch(setAlert('Successfully Logged In', 'success'));
   } catch (err) {
     const errors = err.response.data.errors;
 

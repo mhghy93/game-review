@@ -1,51 +1,37 @@
-import React, { Fragment, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Form, Button, Card, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { setAlert } from '../../actions/alert';
-import { userRegister } from '../../actions/auth';
+import { editProfile } from '../../actions/auth';
 
-const Register = ({
-  auth: { isUserAuthenticated },
-  userRegister,
-  setAlert,
-}) => {
+const EditProfile = ({ auth: { user }, editProfile, setAlert }) => {
   const [formData, setFormData] = useState({
     firstname: '',
     lastname: '',
     username: '',
     email: '',
-    password: '',
-    confirmPassword: '',
   });
 
-  const {
-    firstname,
-    lastname,
-    username,
-    email,
-    password,
-    confirmPassword,
-  } = formData;
+  useEffect(() => {
+    setFormData({
+      firstname: user.firstname,
+      lastname: user.lastname,
+      username: user.username,
+      email: user.email,
+    });
+  }, [user]);
+
+  const { firstname, lastname, username, email } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      setAlert('Passwords do not match', 'danger');
-    } else {
-      userRegister({ firstname, lastname, username, email, password });
-      return <Redirect to="/login" />;
-    }
+    editProfile({ firstname, lastname, username, email });
   };
-
-  //   if (isUserAuthenticated) {
-  //     return <Redirect to="/user/profile" />;
-  //   }
 
   return (
     <Fragment>
@@ -69,7 +55,7 @@ const Register = ({
                     type="text"
                     placeholder="Enter firstname"
                     name="firstname"
-                    value={firstname}
+                    value={firstname || ''}
                     onChange={onChange}
                     required
                   />
@@ -84,7 +70,7 @@ const Register = ({
                     type="text"
                     placeholder="Enter lastname"
                     name="lastname"
-                    value={lastname}
+                    value={lastname || ''}
                     onChange={onChange}
                     required
                   />
@@ -99,7 +85,7 @@ const Register = ({
                     type="text"
                     placeholder="Enter username"
                     name="username"
-                    value={username}
+                    value={username || ''}
                     onChange={onChange}
                     required
                   />
@@ -114,7 +100,7 @@ const Register = ({
                     type="email"
                     placeholder="Enter email"
                     name="email"
-                    value={email}
+                    value={email || ''}
                     onChange={onChange}
                     required
                   />
@@ -135,8 +121,8 @@ const Register = ({
   );
 };
 
-Register.propTypes = {
-  userRegister: PropTypes.func.isRequired,
+EditProfile.propTypes = {
+  editProfile: PropTypes.func.isRequired,
   setAlert: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
 };
@@ -145,4 +131,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { userRegister, setAlert })(Register);
+export default connect(mapStateToProps, { editProfile, setAlert })(EditProfile);
