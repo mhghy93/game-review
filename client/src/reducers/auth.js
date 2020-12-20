@@ -5,6 +5,8 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGOUT,
   USER_LOADED,
+  EDIT_USER_PROFILE,
+  DELETE_USER_PROFILE,
   USER_AUTH_ERROR,
 } from '../actions/types';
 
@@ -34,6 +36,11 @@ export default function (state = initialState, action) {
         ...payload,
         isUserAuthenticated: true,
         loading: false,
+      };
+    case EDIT_USER_PROFILE:
+      return {
+        ...state,
+        user: payload,
       };
     case REGISTER_FAIL:
     case USER_LOGOUT:

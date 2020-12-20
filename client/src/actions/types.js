@@ -26,6 +26,8 @@ export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
 export const USER_LOGIN_FAIL = 'USER_LOGIN_FAIL';
 export const USER_LOGOUT = 'USER_LOGOUT';
 export const USER_LOADED = 'USER_LOADED';
+export const EDIT_USER_PROFILE = 'EDIT_USER_PROFILE';
+export const DELETE_USER_PROFILE = 'DELETE_USER_PROFILE';
 export const USER_AUTH_ERROR = 'USER_AUTH_ERROR';
 
 // alert

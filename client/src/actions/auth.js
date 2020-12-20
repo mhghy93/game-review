@@ -5,6 +5,8 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGOUT,
   USER_LOADED,
+  EDIT_USER_PROFILE,
+  DELETE_USER_PROFILE,
   USER_AUTH_ERROR,
 } from './types';
 import axios from 'axios';
@@ -69,6 +71,44 @@ export const userRegister = ({
 
     dispatch({
       type: REGISTER_FAIL,
+    });
+  }
+};
+
+export const editProfile = ({ firstname, lastname, username, email }) => async (
+  dispatch
+) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const body = JSON.stringify({
+    firstname,
+    lastname,
+    username,
+    email,
+  });
+
+  try {
+    const res = await axios.put('/api/user/profile/edit', body, config);
+
+    dispatch({
+      type: EDIT_USER_PROFILE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert('Profile Updated', 'success'));
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    dispatch({
+      type: USER_AUTH_ERROR,
     });
   }
 };
