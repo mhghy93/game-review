@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect, Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Card, Row, Col, Button } from 'react-bootstrap';
@@ -8,6 +8,7 @@ import { userReviews } from '../../actions/profile';
 import { showAllGames } from '../../actions/game';
 import UserReviewItem from './UserReviewItem';
 import UserRatingItem from './UserRatingItem';
+import DeleteProfile from './DeleteProfile';
 
 const UserProfile = ({
   auth: { user },
@@ -25,6 +26,12 @@ const UserProfile = ({
   useEffect(() => {
     showAllGames();
   }, [showAllGames]);
+
+  const [modalShow, setModalShow] = useState(false);
+
+  const handleDeleteModal = () => {
+    setModalShow(false);
+  };
 
   return (
     <Fragment>
@@ -61,6 +68,14 @@ const UserProfile = ({
               ) : (
                 <p>No Ratings</p>
               )}
+              <Button
+                className="mt-3"
+                variant="danger"
+                onClick={() => setModalShow(true)}
+              >
+                <i className="fas fa-trash-alt"></i> Delete Account
+              </Button>
+              <DeleteProfile show={modalShow} onHide={handleDeleteModal} />
             </div>
           </Col>
           <Col xs={12} lg={6}>

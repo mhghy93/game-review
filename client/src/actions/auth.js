@@ -115,6 +115,28 @@ export const editProfile = ({ firstname, lastname, username, email }) => async (
   }
 };
 
+export const deleteProfile = () => async (dispatch) => {
+  try {
+    await axios.delete('/api/user/profile/delete');
+
+    dispatch({
+      type: DELETE_USER_PROFILE,
+    });
+
+    dispatch(setAlert('Profile Deleted', 'success'));
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    dispatch({
+      type: USER_AUTH_ERROR,
+    });
+  }
+};
+
 export const userLogin = (email, password) => async (dispatch) => {
   const config = {
     headers: {

@@ -42,6 +42,7 @@ export default function (state = initialState, action) {
         ...state,
         user: payload,
       };
+    case DELETE_USER_PROFILE:
     case REGISTER_FAIL:
     case USER_LOGOUT:
     case USER_LOGIN_FAIL:
