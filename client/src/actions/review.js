@@ -75,22 +75,6 @@ export const showAverageRating = (gameId) => async (dispatch) => {
   }
 };
 
-export const showGameReviewDetail = (id) => async (dispatch) => {
-  try {
-    const res = await axios.get(`/api/game/review/reviewDetails/${id}`);
-
-    dispatch({
-      type: GAME_REVIEW_DETAIL,
-      payload: res.data,
-    });
-  } catch (err) {
-    dispatch({
-      type: GAME_REVIEW_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-  }
-};
-
 export const editGameReview = (gameId, review) => async (dispatch) => {
   const config = {
     headers: {

@@ -2,7 +2,6 @@ import {
   ADD_GAME_REVIEW,
   SHOW_ALL_GAME_REVIEWS,
   SHOW_AVERAGE_RATING,
-  GAME_REVIEW_DETAIL,
   EDIT_GAME_REVIEW,
   DELETE_GAME_REVIEW,
   GAME_REVIEW_ERROR,
@@ -34,11 +33,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         averageRating: payload,
-      };
-    case GAME_REVIEW_DETAIL:
-      return {
-        ...state,
-        review: payload,
       };
     case EDIT_GAME_REVIEW:
       return {
