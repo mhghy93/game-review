@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
 
@@ -12,6 +12,18 @@ const ReviewItem = ({ review, profiles }) => {
       }
     }
   }
+
+  const [showMore, setShowMore] = useState(false);
+
+  const handleShowMore = (e) => {
+    e.preventDefault();
+    setShowMore(true);
+  };
+
+  const handleShowLess = (e) => {
+    e.preventDefault();
+    setShowMore(false);
+  };
 
   return (
     <Fragment>
@@ -34,8 +46,22 @@ const ReviewItem = ({ review, profiles }) => {
           )}
         </Card.Subtitle>
         <Card.Body>
-          {review.review.substring(0, 200)}...
-          <Button variant="link">See More</Button>
+          {showMore ? (
+            <Fragment>
+              {review.review}
+              <Button onClick={handleShowLess} variant="link">
+                Show Less
+              </Button>
+            </Fragment>
+          ) : (
+            <Fragment>
+              {review.review.substring(0, 200)}
+              {' ....'}
+              <Button onClick={handleShowMore} variant="link">
+                See More
+              </Button>
+            </Fragment>
+          )}
         </Card.Body>
       </Card>
     </Fragment>
