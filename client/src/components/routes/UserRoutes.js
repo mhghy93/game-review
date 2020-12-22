@@ -12,6 +12,7 @@ import Register from '../auth/Register';
 import GameDetail from '../games/GameDetail';
 import AddReview from '../reviews/AddReview';
 import EditProfile from '../profile/EditProfile';
+import EditReview from '../reviews/EditReview';
 
 const UserRoutes = () => {
   return (
@@ -40,6 +41,11 @@ const UserRoutes = () => {
                 exact
                 path="/user/profile/edit"
                 component={EditProfile}
+              />
+              <UserPrivateRoute
+                exact
+                path="/user/profile/review/edit/:id"
+                component={EditReview}
               />
               <Route component={NotFound} />
             </Switch>

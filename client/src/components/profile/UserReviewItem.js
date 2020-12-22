@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const UserReviewItem = ({ review, games }) => {
   let index = 0;
@@ -48,6 +49,16 @@ const UserReviewItem = ({ review, games }) => {
               <Button onClick={handleShowLess} variant="link">
                 Show Less
               </Button>
+              <div className="mt-3">
+                <LinkContainer to={`/user/profile/review/edit/${review.id}`}>
+                  <Button className="mr-3" variant="success">
+                    <i className="fas fa-pencil-alt"></i> Edit
+                  </Button>
+                </LinkContainer>
+                <Button variant="danger">
+                  <i className="fas fa-trash-alt"></i> Delete
+                </Button>
+              </div>
             </Fragment>
           ) : (
             <Fragment>

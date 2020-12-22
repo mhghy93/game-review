@@ -29,6 +29,18 @@ exports.showAverageRating = async (req, res) => {
   }
 };
 
+exports.showReview = async (req, res) => {
+  try {
+    const reviewDetails = await Review.findOne({
+      where: { id: req.params.id },
+    });
+    res.json(reviewDetails);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
+
 exports.addReview = async (req, res) => {
   const { review, rating } = req.body;
   const gameId = req.params.gameId;

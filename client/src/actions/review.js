@@ -2,6 +2,7 @@ import {
   ADD_GAME_REVIEW,
   SHOW_ALL_GAME_REVIEWS,
   SHOW_AVERAGE_RATING,
+  GAME_REVIEW_DETAIL,
   EDIT_GAME_REVIEW,
   DELETE_GAME_REVIEW,
   GAME_REVIEW_ERROR,
@@ -74,18 +75,30 @@ export const showAverageRating = (gameId) => async (dispatch) => {
   }
 };
 
-export const editGameReview = (gameId, review) => async (dispatch) => {
+export const showGameReviewDetail = (id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/game/review/reviewDetails/${id}`);
+
+    dispatch({
+      type: GAME_REVIEW_DETAIL,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: GAME_REVIEW_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const editGameReview = (id, review) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   };
   try {
-    const res = await axios.put(
-      `/api/game/review/edit/${gameId}`,
-      review,
-      config
-    );
+    const res = await axios.put(`/api/game/review/edit/${id}`, review, config);
 
     dispatch({
       type: EDIT_GAME_REVIEW,
@@ -94,6 +107,12 @@ export const editGameReview = (gameId, review) => async (dispatch) => {
 
     dispatch(setAlert('Review updated', 'success'));
   } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+
     dispatch({
       type: GAME_REVIEW_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
