@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import DeleteReview from '../reviews/DeleteReview';
 
 const UserReviewItem = ({ review, games }) => {
   let index = 0;
@@ -15,6 +16,7 @@ const UserReviewItem = ({ review, games }) => {
   }
 
   const [showMore, setShowMore] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   const handleShowMore = (e) => {
     e.preventDefault();
@@ -24,6 +26,10 @@ const UserReviewItem = ({ review, games }) => {
   const handleShowLess = (e) => {
     e.preventDefault();
     setShowMore(false);
+  };
+
+  const handleDeleteModal = () => {
+    setModalShow(false);
   };
 
   return (
@@ -55,9 +61,14 @@ const UserReviewItem = ({ review, games }) => {
                     <i className="fas fa-pencil-alt"></i> Edit
                   </Button>
                 </LinkContainer>
-                <Button variant="danger">
+                <Button variant="danger" onClick={() => setModalShow(true)}>
                   <i className="fas fa-trash-alt"></i> Delete
                 </Button>
+                <DeleteReview
+                  id={review.id}
+                  show={modalShow}
+                  onHide={handleDeleteModal}
+                />
               </div>
             </Fragment>
           ) : (

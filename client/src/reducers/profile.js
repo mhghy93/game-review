@@ -1,6 +1,7 @@
 import {
   SHOW_ALL_PROFILES,
   USER_REVIEWS,
+  TERMINATE_USER_REVIEW,
   PROFILE_ERROR,
 } from '../actions/types';
 
@@ -27,6 +28,11 @@ export default function (state = initialState, action) {
         ...state,
         reviews: payload,
         loading: false,
+      };
+    case TERMINATE_USER_REVIEW:
+      return {
+        ...state,
+        reviews: state.reviews.filter((review) => review.id !== payload),
       };
     case PROFILE_ERROR:
       return {

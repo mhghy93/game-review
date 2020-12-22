@@ -5,6 +5,7 @@ import {
   GAME_REVIEW_DETAIL,
   EDIT_GAME_REVIEW,
   DELETE_GAME_REVIEW,
+  TERMINATE_USER_REVIEW,
   GAME_REVIEW_ERROR,
 } from './types';
 import axios from 'axios';
@@ -123,6 +124,11 @@ export const editGameReview = (id, review) => async (dispatch) => {
 export const deleteGameReview = (id) => async (dispatch) => {
   try {
     await axios.delete(`/api/game/review/delete/${id}`);
+
+    dispatch({
+      type: TERMINATE_USER_REVIEW,
+      payload: id,
+    });
 
     dispatch({
       type: DELETE_GAME_REVIEW,

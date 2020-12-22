@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Modal, Button } from 'react-bootstrap';
-import { deleteUserReview } from '../../actions/admin';
+import { deleteGameReview } from '../../actions/review';
 
-const DeleteUserReview = ({ id, show, onHide, deleteUserReview }) => {
+const DeleteReview = ({ id, show, onHide, deleteGameReview }) => {
   const handleCancel = (e) => {
     e.preventDefault();
     onHide();
@@ -12,7 +12,8 @@ const DeleteUserReview = ({ id, show, onHide, deleteUserReview }) => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    deleteUserReview(id);
+    deleteGameReview(id);
+    onHide();
   };
 
   return (
@@ -43,8 +44,8 @@ const DeleteUserReview = ({ id, show, onHide, deleteUserReview }) => {
   );
 };
 
-DeleteUserReview.propTypes = {
-  deleteUserReview: PropTypes.func.isRequired,
+DeleteReview.propTypes = {
+  deleteGameReview: PropTypes.func.isRequired,
 };
 
-export default connect(null, { deleteUserReview })(DeleteUserReview);
+export default connect(null, { deleteGameReview })(DeleteReview);
