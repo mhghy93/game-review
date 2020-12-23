@@ -6,12 +6,12 @@ const AverageRating = ({ rating }) => {
     <Fragment>
       {Number(rating) >= 0 ? (
         <Fragment>
-          <p>
-            <span className="text-warning">
-              <i className="fa fa-star"></i>{' '}
-            </span>
-            {Number(rating).toString()}
-          </p>
+          {/* <p> */}
+          <span className="text-warning">
+            <i className="fa fa-star"></i>{' '}
+          </span>
+          {Number(rating).toString()}
+          {/* </p> */}
         </Fragment>
       ) : (
         <p>Loading...</p>

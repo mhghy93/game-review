@@ -29,6 +29,22 @@ const GamesListItem = ({ game, allReviews }) => {
             />
           </LinkContainer>
           <Card.Body>
+            <div className="mb-2">
+              {allReviews.length > 0 ? (
+                <Fragment>
+                  {averageRating > 0 ? (
+                    <AverageRating rating={averageRating.toString()} />
+                  ) : (
+                    <Fragment>
+                      <AverageRating rating={'0'} />{' '}
+                      <span className="text-muted ml-3">Not reviewed yet</span>
+                    </Fragment>
+                  )}
+                </Fragment>
+              ) : (
+                <p>Loading...</p>
+              )}
+            </div>
             <Card.Title>{game.title}</Card.Title>
             <a
               href={game.trailerLink}
@@ -39,21 +55,6 @@ const GamesListItem = ({ game, allReviews }) => {
                 <i className="fas fa-play"></i> Trailer
               </Badge>
             </a>
-            <div className="mt-3">
-              {allReviews.length > 0 ? (
-                <Fragment>
-                  {averageRating > 0 ? (
-                    <AverageRating rating={averageRating.toString()} />
-                  ) : (
-                    <Fragment>
-                      <AverageRating rating={'0'} /> Not reviewed yet
-                    </Fragment>
-                  )}
-                </Fragment>
-              ) : (
-                <p>Loading...</p>
-              )}
-            </div>
           </Card.Body>
         </Card>
       </Col>
