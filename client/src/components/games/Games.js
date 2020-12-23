@@ -4,17 +4,27 @@ import { connect } from 'react-redux';
 import { Row } from 'react-bootstrap';
 import GamesListItem from './GamesListItem';
 import { showAllGames } from '../../actions/game';
+import { showAllReviews } from '../../actions/review';
 
-const Games = ({ game: { games }, showAllGames }) => {
+const Games = ({
+  game: { games },
+  review: { allReviews },
+  showAllGames,
+  showAllReviews,
+}) => {
   useEffect(() => {
     showAllGames();
   }, [showAllGames]);
+
+  useEffect(() => {
+    showAllReviews();
+  }, [showAllReviews]);
 
   return (
     <Fragment>
       <Row>
         {games.map((game) => (
-          <GamesListItem key={game.id} game={game} />
+          <GamesListItem key={game.id} game={game} allReviews={allReviews} />
         ))}
       </Row>
     </Fragment>
@@ -24,10 +34,14 @@ const Games = ({ game: { games }, showAllGames }) => {
 Games.propTypes = {
   game: PropTypes.object.isRequired,
   showAllGames: PropTypes.func.isRequired,
+  showAllReviews: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   game: state.game,
+  review: state.review,
 });
 
-export default connect(mapStateToProps, { showAllGames })(Games);
+export default connect(mapStateToProps, { showAllGames, showAllReviews })(
+  Games
+);

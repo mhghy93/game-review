@@ -2,8 +2,21 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Col, Badge } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import AverageRating from '../reviews/AverageRating';
 
-const GamesListItem = ({ game }) => {
+const GamesListItem = ({ game, allReviews }) => {
+  let averageRating = 0;
+  let sum = 0;
+  let gameReviews = [];
+
+  if (allReviews.length > 0) {
+    gameReviews = allReviews.filter((review) => review.gameId === game.id);
+    for (let i = 0; i < gameReviews.length; i++) {
+      sum += Number(gameReviews[i].rating);
+    }
+    averageRating = sum / gameReviews.length;
+  }
+
   return (
     <Fragment>
       <Col className="mb-5" lg={4}>
@@ -26,6 +39,21 @@ const GamesListItem = ({ game }) => {
                 <i className="fas fa-play"></i> Trailer
               </Badge>
             </a>
+            <div className="mt-3">
+              {allReviews.length > 0 ? (
+                <Fragment>
+                  {averageRating > 0 ? (
+                    <AverageRating rating={averageRating.toString()} />
+                  ) : (
+                    <Fragment>
+                      <AverageRating rating={'0'} /> Not reviewed yet
+                    </Fragment>
+                  )}
+                </Fragment>
+              ) : (
+                <p>Loading...</p>
+              )}
+            </div>
           </Card.Body>
         </Card>
       </Col>
@@ -35,6 +63,7 @@ const GamesListItem = ({ game }) => {
 
 GamesListItem.propTypes = {
   game: PropTypes.object.isRequired,
+  allReviews: PropTypes.array.isRequired,
 };
 
 export default GamesListItem;
