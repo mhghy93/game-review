@@ -1,4 +1,5 @@
 const Review = require('../models/Review');
+const Game = require('../models/Game');
 const { Op } = require('sequelize');
 const { sequelize } = require('../models/Review');
 
@@ -18,6 +19,7 @@ exports.showAverageRating = async (req, res) => {
   try {
     const averageRating = await Review.findOne({
       attributes: [
+        'gameId',
         [sequelize.fn('avg', sequelize.col('rating')), 'averageRating'],
       ],
       where: { gameId: req.params.gameId },
