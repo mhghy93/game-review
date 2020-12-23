@@ -1,5 +1,6 @@
 import {
   ADD_GAME_REVIEW,
+  SHOW_ALL_REVIEWS,
   SHOW_ALL_GAME_REVIEWS,
   SHOW_AVERAGE_RATING,
   GAME_REVIEW_DETAIL,
@@ -10,6 +11,7 @@ import {
 
 const initialState = {
   reviews: [],
+  allReviews: [],
   gameReview: {},
   averageRating: {},
   loading: false,
@@ -24,6 +26,11 @@ export default function (state = initialState, action) {
         ...state,
         reviews: [payload, ...state.reviews],
         loading: true,
+      };
+    case SHOW_ALL_REVIEWS:
+      return {
+        ...state,
+        allReviews: payload,
       };
     case SHOW_ALL_GAME_REVIEWS:
       return {

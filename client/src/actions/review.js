@@ -1,5 +1,6 @@
 import {
   ADD_GAME_REVIEW,
+  SHOW_ALL_REVIEWS,
   SHOW_ALL_GAME_REVIEWS,
   SHOW_AVERAGE_RATING,
   GAME_REVIEW_DETAIL,
@@ -40,6 +41,22 @@ export const addGameReview = (review, gameId) => async (dispatch) => {
     dispatch({
       type: GAME_REVIEW_ERROR,
       payload: errors,
+    });
+  }
+};
+
+export const showAllReviews = () => async (dispatch) => {
+  try {
+    const res = await axios.get('/api/game/review/all');
+
+    dispatch({
+      type: SHOW_ALL_REVIEWS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: GAME_REVIEW_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };
