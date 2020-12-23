@@ -3,6 +3,16 @@ const Game = require('../models/Game');
 const { Op } = require('sequelize');
 const { sequelize } = require('../models/Review');
 
+exports.showEveryReview = async (req, res) => {
+  try {
+    const reviews = await Review.findAll();
+    res.json(reviews);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
+
 exports.showAllReviews = async (req, res) => {
   try {
     const reviews = await Review.findAll({
