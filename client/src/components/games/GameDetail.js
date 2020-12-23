@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
+import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Badge, Image, Button } from 'react-bootstrap';
+import { Image, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { showGameDetail } from '../../actions/game';
 import Reviews from '../reviews/Reviews';
@@ -20,13 +21,16 @@ const GameDetail = ({ showGameDetail, game: { game }, match }) => {
       </LinkContainer>
       <h3 className="text-center mb-3">{game.title}</h3>
       <Image src={game.displayPic} thumbnail />
+      <div className="player-wrapper mt-3 mb-3">
+        <ReactPlayer
+          className="react-player"
+          url={game.trailerLink}
+          width="100%"
+          height="100%"
+          controls={true}
+        />
+      </div>
       <p className="mt-3">{game.description}</p>
-
-      <a href={game.trailerLink} rel="noopener noreferrer" target="_blank">
-        <Badge className="p-3 mr-3" variant="warning" pill>
-          <i className="fas fa-play"></i> Trailer
-        </Badge>
-      </a>
       <GameCategory category={game.category} />
       <GamePlatform platform={game.platform} />
       <div className="mt-5">

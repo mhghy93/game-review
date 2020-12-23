@@ -46,15 +46,11 @@ const GamesListItem = ({ game, allReviews }) => {
               )}
             </div>
             <Card.Title>{game.title}</Card.Title>
-            <a
-              href={game.trailerLink}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
+            <LinkContainer to={`/game/${game.id}`}>
               <Badge className="p-3 mr-3" variant="warning" pill>
                 <i className="fas fa-play"></i> Trailer
               </Badge>
-            </a>
+            </LinkContainer>
           </Card.Body>
         </Card>
       </Col>
