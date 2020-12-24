@@ -6,7 +6,9 @@ const gameController = require('../controllers/Game');
 
 router.get('/all', gameController.getAllGames);
 
-router.get('/', gameController.getGamesByCategory);
+router.get('/search/categories', gameController.getGamesByCategory);
+
+router.get('/search/platforms', gameController.getGamesByPlatform);
 
 router.get('/:id', gameController.getGameDetail);
 

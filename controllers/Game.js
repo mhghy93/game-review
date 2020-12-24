@@ -28,6 +28,22 @@ exports.getGamesByCategory = async (req, res) => {
   }
 };
 
+exports.getGamesByPlatform = async (req, res) => {
+  try {
+    const games = await Game.findAll({
+      where: {
+        platform: {
+          [Op.like]: '%' + req.param('platform') + '%',
+        },
+      },
+    });
+    res.json(games);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
+
 exports.getGameDetail = async (req, res) => {
   try {
     const game = await Game.findOne({ where: { id: req.params.id } });
