@@ -1,9 +1,26 @@
 const Game = require('../models/Game');
 const Review = require('../models/Review');
+const { Op } = require('sequelize');
 
 exports.getAllGames = async (req, res) => {
   try {
     const games = await Game.findAll();
+    res.json(games);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
+
+exports.getGamesByCategory = async (req, res) => {
+  try {
+    const games = await Game.findAll({
+      where: {
+        category: {
+          [Op.like]: '%' + req.param('category') + '%',
+        },
+      },
+    });
     res.json(games);
   } catch (err) {
     console.error(err.message);
