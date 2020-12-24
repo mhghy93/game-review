@@ -12,6 +12,24 @@ exports.getAllGames = async (req, res) => {
   }
 };
 
+exports.searchGames = async (req, res) => {
+  try {
+    const games = await Game.findAll({
+      where: {
+        [Op.or]: [
+          { title: { [Op.like]: '%' + req.param('q') + '%' } },
+          { category: { [Op.like]: '%' + req.param('q') + '%' } },
+          { platform: { [Op.like]: '%' + req.param('q') + '%' } },
+        ],
+      },
+    });
+    res.json(games);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
+
 exports.getGamesByCategory = async (req, res) => {
   try {
     const games = await Game.findAll({
