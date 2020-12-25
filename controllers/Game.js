@@ -12,6 +12,36 @@ exports.getAllGames = async (req, res) => {
   }
 };
 
+exports.getAllCategories = async (req, res) => {
+  try {
+    const allCategories = await Game.findAll({
+      attributes: ['category'],
+    });
+    let jsonObject = allCategories.map(JSON.stringify);
+    let uniqueSet = new Set(jsonObject);
+    let categories = Array.from(uniqueSet).map(JSON.parse);
+    res.json(categories);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
+
+exports.getAllPlatforms = async (req, res) => {
+  try {
+    const allPlatforms = await Game.findAll({
+      attributes: ['platform'],
+    });
+    let jsonObject = allPlatforms.map(JSON.stringify);
+    let uniqueSet = new Set(jsonObject);
+    let platforms = Array.from(uniqueSet).map(JSON.parse);
+    res.json(platforms);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
+
 exports.searchGames = async (req, res) => {
   try {
     const games = await Game.findAll({
