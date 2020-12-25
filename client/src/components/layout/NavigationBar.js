@@ -1,11 +1,31 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { userLogout } from '../../actions/auth';
+import {
+  showAllGameCategories,
+  showAllGamePlatforms,
+} from '../../actions/game';
+import CategoryDropdown from './CategoryDropdown';
+import PlatformDropdown from './PlatformDropdown';
 
-const NavigationBar = ({ auth: { isUserAuthenticated }, userLogout }) => {
+const NavigationBar = ({
+  auth: { isUserAuthenticated },
+  game: { categories, platforms },
+  userLogout,
+  showAllGameCategories,
+  showAllGamePlatforms,
+}) => {
+  useEffect(() => {
+    showAllGameCategories();
+  }, [showAllGameCategories]);
+
+  useEffect(() => {
+    showAllGamePlatforms();
+  }, [showAllGamePlatforms]);
+
   return (
     <Navbar
       collapseOnSelect
@@ -25,17 +45,8 @@ const NavigationBar = ({ auth: { isUserAuthenticated }, userLogout }) => {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="#features">About</Nav.Link>
-          <NavDropdown title="Categories" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item>
-          </NavDropdown>
+          <CategoryDropdown categories={categories} />
+          <PlatformDropdown platforms={platforms} />
         </Nav>
         <Nav>
           {!isUserAuthenticated ? (
@@ -73,11 +84,19 @@ const NavigationBar = ({ auth: { isUserAuthenticated }, userLogout }) => {
 
 NavigationBar.propTypes = {
   auth: PropTypes.object.isRequired,
+  game: PropTypes.object.isRequired,
+  showAllGamePlatforms: PropTypes.func.isRequired,
+  showAllGameCategories: PropTypes.func.isRequired,
   userLogout: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  game: state.game,
 });
 
-export default connect(mapStateToProps, { userLogout })(NavigationBar);
+export default connect(mapStateToProps, {
+  userLogout,
+  showAllGameCategories,
+  showAllGamePlatforms,
+})(NavigationBar);
