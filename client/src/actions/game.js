@@ -2,6 +2,8 @@ import {
   ADD_GAME,
   EDIT_GAME,
   SHOW_ALL_GAMES,
+  SHOW_ALL_GAME_CATEGORIES,
+  SHOW_ALL_GAME_PLATFORMS,
   SHOW_GAME_DETAIL,
   DELETE_GAME,
   GAME_ERROR,
@@ -61,6 +63,38 @@ export const showAllGames = () => async (dispatch) => {
 
     dispatch({
       type: SHOW_ALL_GAMES,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: GAME_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const showAllGameCategories = () => async (dispatch) => {
+  try {
+    const res = await axios.get('/api/game/categories/all');
+
+    dispatch({
+      type: SHOW_ALL_GAME_CATEGORIES,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: GAME_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const showAllGamePlatforms = () => async (dispatch) => {
+  try {
+    const res = await axios.get('/api/game/platforms/all');
+
+    dispatch({
+      type: SHOW_ALL_GAME_PLATFORMS,
       payload: res.data,
     });
   } catch (err) {

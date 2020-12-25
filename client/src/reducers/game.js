@@ -1,6 +1,8 @@
 import {
   ADD_GAME,
   SHOW_ALL_GAMES,
+  SHOW_ALL_GAME_CATEGORIES,
+  SHOW_ALL_GAME_PLATFORMS,
   SHOW_GAME_DETAIL,
   EDIT_GAME,
   DELETE_GAME,
@@ -10,6 +12,8 @@ import {
 const initialState = {
   games: [],
   game: {},
+  categories: [],
+  platforms: [],
   loading: false,
   error: {},
 };
@@ -27,6 +31,16 @@ export default function (state = initialState, action) {
       return {
         ...state,
         games: payload,
+      };
+    case SHOW_ALL_GAME_CATEGORIES:
+      return {
+        ...state,
+        categories: payload,
+      };
+    case SHOW_ALL_GAME_PLATFORMS:
+      return {
+        ...state,
+        platforms: payload,
       };
     case SHOW_GAME_DETAIL:
       return {
