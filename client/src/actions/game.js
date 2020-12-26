@@ -92,11 +92,9 @@ export const searchGames = (game) => async (dispatch) => {
   }
 };
 
-export const searchGamesBycategory = (category) => async (dispatch) => {
+export const searchGamesByCategory = (serachParam) => async (dispatch) => {
   try {
-    const res = await axios.get(
-      `/api/game/search/categories/?category=${category}`
-    );
+    const res = await axios.get(`/api/game/search/categories/${serachParam}`);
 
     dispatch({
       type: SEARCH_GAMES_BY_CATEGORY,

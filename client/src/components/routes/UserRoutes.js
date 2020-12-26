@@ -13,6 +13,7 @@ import GameDetail from '../games/GameDetail';
 import AddReview from '../reviews/AddReview';
 import EditProfile from '../profile/EditProfile';
 import EditReview from '../reviews/EditReview';
+import GamesByCategory from '../search/GamesByCategory';
 
 const UserRoutes = () => {
   return (
@@ -27,6 +28,11 @@ const UserRoutes = () => {
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/game/:id" component={GameDetail} />
+              <Route
+                exact
+                path="/search/by/categories"
+                component={GamesByCategory}
+              />
               <UserPrivateRoute
                 exact
                 path="/user/profile"

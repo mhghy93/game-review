@@ -7,7 +7,7 @@ const CategoryDropdown = ({ categories }) => {
   return (
     <NavDropdown title="Categories" id="collasible-nav-dropdown">
       {categories.map((category) => (
-        <CategoryDropdownItem key={category.category} category={category} />
+        <CategoryDropdownItem key={category} category={category} />
       ))}
     </NavDropdown>
   );
