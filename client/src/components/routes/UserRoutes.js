@@ -14,6 +14,7 @@ import AddReview from '../reviews/AddReview';
 import EditProfile from '../profile/EditProfile';
 import EditReview from '../reviews/EditReview';
 import GamesByCategory from '../search/GamesByCategory';
+import GamesByPlatform from '../search/GamesByPlatform';
 
 const UserRoutes = () => {
   return (
@@ -32,6 +33,11 @@ const UserRoutes = () => {
                 exact
                 path="/search/by/categories"
                 component={GamesByCategory}
+              />
+              <Route
+                exact
+                path="/search/by/platforms"
+                component={GamesByPlatform}
               />
               <UserPrivateRoute
                 exact

@@ -92,9 +92,9 @@ export const searchGames = (game) => async (dispatch) => {
   }
 };
 
-export const searchGamesByCategory = (serachParam) => async (dispatch) => {
+export const searchGamesByCategory = (searchParam) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/game/search/categories/${serachParam}`);
+    const res = await axios.get(`/api/game/search/categories/${searchParam}`);
 
     dispatch({
       type: SEARCH_GAMES_BY_CATEGORY,
@@ -108,11 +108,9 @@ export const searchGamesByCategory = (serachParam) => async (dispatch) => {
   }
 };
 
-export const searchGamesByPlatform = (platform) => async (dispatch) => {
+export const searchGamesByPlatform = (searchParam) => async (dispatch) => {
   try {
-    const res = await axios.get(
-      `/api/game/search/platforms/?platform=${platform}`
-    );
+    const res = await axios.get(`/api/game/search/platforms/${searchParam}`);
 
     dispatch({
       type: SEARCH_GAMES_BY_PLATFORM,
