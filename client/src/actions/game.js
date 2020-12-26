@@ -4,6 +4,9 @@ import {
   SHOW_ALL_GAMES,
   SHOW_ALL_GAME_CATEGORIES,
   SHOW_ALL_GAME_PLATFORMS,
+  SEARCH_GAMES,
+  SEARCH_GAMES_BY_CATEGORY,
+  SEARCH_GAMES_BY_PLATFORM,
   SHOW_GAME_DETAIL,
   DELETE_GAME,
   GAME_ERROR,
@@ -63,6 +66,58 @@ export const showAllGames = () => async (dispatch) => {
 
     dispatch({
       type: SHOW_ALL_GAMES,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: GAME_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const searchGames = (game) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/game/search/?q=${game}`);
+
+    dispatch({
+      type: SEARCH_GAMES,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: GAME_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const searchGamesBycategory = (category) => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      `/api/game/search/categories/?category=${category}`
+    );
+
+    dispatch({
+      type: SEARCH_GAMES_BY_CATEGORY,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: GAME_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const searchGamesByPlatform = (platform) => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      `/api/game/search/platforms/?platform=${platform}`
+    );
+
+    dispatch({
+      type: SEARCH_GAMES_BY_PLATFORM,
       payload: res.data,
     });
   } catch (err) {

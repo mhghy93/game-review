@@ -3,6 +3,9 @@ import {
   SHOW_ALL_GAMES,
   SHOW_ALL_GAME_CATEGORIES,
   SHOW_ALL_GAME_PLATFORMS,
+  SEARCH_GAMES,
+  SEARCH_GAMES_BY_CATEGORY,
+  SEARCH_GAMES_BY_PLATFORM,
   SHOW_GAME_DETAIL,
   EDIT_GAME,
   DELETE_GAME,
@@ -28,6 +31,9 @@ export default function (state = initialState, action) {
         loading: true,
       };
     case SHOW_ALL_GAMES:
+    case SEARCH_GAMES:
+    case SEARCH_GAMES_BY_CATEGORY:
+    case SEARCH_GAMES_BY_PLATFORM:
       return {
         ...state,
         games: payload,
