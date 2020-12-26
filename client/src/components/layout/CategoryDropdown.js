@@ -6,8 +6,8 @@ import CategoryDropdownItem from './CategoryDropdownItem';
 const CategoryDropdown = ({ categories }) => {
   return (
     <NavDropdown title="Categories" id="collasible-nav-dropdown">
-      {categories.map((category) => (
-        <CategoryDropdownItem key={category} category={category} />
+      {categories.map((category, index) => (
+        <CategoryDropdownItem key={index} category={category} />
       ))}
     </NavDropdown>
   );

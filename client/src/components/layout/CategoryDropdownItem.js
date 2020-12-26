@@ -9,10 +9,11 @@ const CategoryDropdownItem = ({ category }) => {
     <Fragment>
       {typeof category.category === 'string' ? (
         category.category.split(',').map((gameCategory) => (
-          <LinkContainer to={`/search/by/categories/?category=${gameCategory}`}>
-            <NavDropdown.Item key={gameCategory}>
-              {gameCategory}
-            </NavDropdown.Item>
+          <LinkContainer
+            key={gameCategory}
+            to={`/search/by/categories/?category=${gameCategory}`}
+          >
+            <NavDropdown.Item>{gameCategory}</NavDropdown.Item>
           </LinkContainer>
         ))
       ) : (
