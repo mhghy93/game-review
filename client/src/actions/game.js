@@ -76,9 +76,9 @@ export const showAllGames = () => async (dispatch) => {
   }
 };
 
-export const searchGames = (game) => async (dispatch) => {
+export const searchGames = (searchParam) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/game/search/?q=${game}`);
+    const res = await axios.get(`/api/game/search/${searchParam}`);
 
     dispatch({
       type: SEARCH_GAMES,

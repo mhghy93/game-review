@@ -17,7 +17,7 @@ const initialState = {
   game: {},
   categories: [],
   platforms: [],
-  loading: false,
+  loading: true,
   error: {},
 };
 
@@ -37,6 +37,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         games: payload,
+        loading: false,
       };
     case SHOW_ALL_GAME_CATEGORIES:
       return {

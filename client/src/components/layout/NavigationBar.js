@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { userLogout } from '../../actions/auth';
 import {
@@ -10,6 +10,7 @@ import {
 } from '../../actions/game';
 import CategoryDropdown from './CategoryDropdown';
 import PlatformDropdown from './PlatformDropdown';
+import SearchBar from '../search/SearchBar';
 
 const NavigationBar = ({
   auth: { isUserAuthenticated },
@@ -50,16 +51,7 @@ const NavigationBar = ({
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Navbar.Brand>
-            <Form inline>
-              <FormControl
-                type="text"
-                placeholder="Search"
-                className="mr-sm-2"
-              />
-              <Button variant="outline-success">
-                <i className="fas fa-search"></i>
-              </Button>
-            </Form>
+            <SearchBar />
           </Navbar.Brand>
           <Nav className="mr-auto nav-link">
             <CategoryDropdown categories={categories} />
