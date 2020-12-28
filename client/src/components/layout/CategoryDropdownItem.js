@@ -7,24 +7,15 @@ import { LinkContainer } from 'react-router-bootstrap';
 const CategoryDropdownItem = ({ category }) => {
   return (
     <Fragment>
-      {typeof category.category === 'string' ? (
-        category.category.split(',').map((gameCategory) => (
-          <LinkContainer
-            key={gameCategory}
-            to={`/search/by/categories/?category=${gameCategory}`}
-          >
-            <NavDropdown.Item>{gameCategory}</NavDropdown.Item>
-          </LinkContainer>
-        ))
-      ) : (
-        <p>Loading....</p>
-      )}
+      <LinkContainer to={`/search/by/categories/?category=${category}`}>
+        <NavDropdown.Item>{category}</NavDropdown.Item>
+      </LinkContainer>
     </Fragment>
   );
 };
 
 CategoryDropdownItem.propTypes = {
-  category: PropTypes.object.isRequired,
+  category: PropTypes.string.isRequired,
 };
 
 export default CategoryDropdownItem;
