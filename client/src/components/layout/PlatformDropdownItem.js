@@ -7,26 +7,15 @@ import { LinkContainer } from 'react-router-bootstrap';
 const PlatformDropdownItem = ({ platform }) => {
   return (
     <Fragment>
-      {typeof platform.platform === 'string' ? (
-        platform.platform.split(',').map((gamePlatform) => (
-          <LinkContainer
-            key={gamePlatform}
-            to={`/search/by/platforms/?platform=${gamePlatform}`}
-          >
-            <NavDropdown.Item key={gamePlatform}>
-              {gamePlatform}
-            </NavDropdown.Item>
-          </LinkContainer>
-        ))
-      ) : (
-        <p>Loading....</p>
-      )}
+      <LinkContainer to={`/search/by/platforms/?platform=${platform}`}>
+        <NavDropdown.Item>{platform}</NavDropdown.Item>
+      </LinkContainer>
     </Fragment>
   );
 };
 
 PlatformDropdownItem.propTypes = {
-  platform: PropTypes.object.isRequired,
+  platform: PropTypes.string.isRequired,
 };
 
 export default PlatformDropdownItem;
