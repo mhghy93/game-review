@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Carousel } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { showLatestGames } from '../../actions/game';
 
 const LatestGames = ({ game: { latestGames }, showLatestGames }) => {
@@ -10,20 +11,23 @@ const LatestGames = ({ game: { latestGames }, showLatestGames }) => {
   }, [showLatestGames]);
 
   return (
-    <Carousel>
-      {latestGames.map((game) => (
-        <Carousel.Item className="carousel-items" interval={3000} key={game.id}>
-          <img
-            className="d-block w-100"
-            src={game.displayPic}
-            alt={game.title}
-          />
-          <Carousel.Caption>
-            <h3>Latest Games</h3>
-          </Carousel.Caption>
-        </Carousel.Item>
-      ))}
-    </Carousel>
+    <Fragment>
+      <h5 className="text-center mb-3"> Latest Games</h5>
+
+      <Carousel>
+        {latestGames.map((game) => (
+          <LinkContainer key={game.id} to={`/game/${game.id}`}>
+            <Carousel.Item className="carousel-items" interval={3000}>
+              <img
+                className="d-block w-100"
+                src={game.displayPic}
+                alt={game.title}
+              />
+            </Carousel.Item>
+          </LinkContainer>
+        ))}
+      </Carousel>
+    </Fragment>
   );
 };
 

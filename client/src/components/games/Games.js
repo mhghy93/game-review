@@ -22,7 +22,7 @@ const Games = ({
 
   return (
     <Fragment>
-      <Row>
+      <Row className="mt-5">
         {games.map((game) => (
           <GamesListItem key={game.id} game={game} allReviews={allReviews} />
         ))}
