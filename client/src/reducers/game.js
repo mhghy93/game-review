@@ -1,6 +1,7 @@
 import {
   ADD_GAME,
   SHOW_ALL_GAMES,
+  SHOW_LATEST_GAMES,
   SHOW_ALL_GAME_CATEGORIES,
   SHOW_ALL_GAME_PLATFORMS,
   SEARCH_GAMES,
@@ -14,6 +15,7 @@ import {
 
 const initialState = {
   games: [],
+  latestGames: [],
   game: {},
   categories: [],
   platforms: [],
@@ -28,7 +30,13 @@ export default function (state = initialState, action) {
       return {
         ...state,
         games: [payload, ...state.games],
-        loading: true,
+        loading: false,
+      };
+    case SHOW_LATEST_GAMES:
+      return {
+        ...state,
+        latestGames: payload,
+        loading: false,
       };
     case SHOW_ALL_GAMES:
     case SEARCH_GAMES:

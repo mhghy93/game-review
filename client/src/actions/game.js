@@ -2,6 +2,7 @@ import {
   ADD_GAME,
   EDIT_GAME,
   SHOW_ALL_GAMES,
+  SHOW_LATEST_GAMES,
   SHOW_ALL_GAME_CATEGORIES,
   SHOW_ALL_GAME_PLATFORMS,
   SEARCH_GAMES,
@@ -66,6 +67,22 @@ export const showAllGames = () => async (dispatch) => {
 
     dispatch({
       type: SHOW_ALL_GAMES,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: GAME_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const showLatestGames = () => async (dispatch) => {
+  try {
+    const res = await axios.get('/api/game/latest');
+
+    dispatch({
+      type: SHOW_LATEST_GAMES,
       payload: res.data,
     });
   } catch (err) {
