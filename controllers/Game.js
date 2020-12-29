@@ -1,11 +1,25 @@
 const Game = require('../models/Game');
 const Review = require('../models/Review');
 const { Op } = require('sequelize');
+const { getPagination, getPagingData } = require('../utils/pagination');
 
 exports.getAllGames = async (req, res) => {
   try {
     const games = await Game.findAll();
     res.json(games);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
+
+exports.getPaginatedGames = async (req, res) => {
+  const { page, size } = req.query;
+  const { limit, offset } = getPagination(page, size);
+  try {
+    const games = await Game.findAndCountAll({ limit, offset });
+    const paginatedGames = getPagingData(games, page, limit);
+    res.json(paginatedGames);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
