@@ -32,13 +32,13 @@ const NavigationBar = ({
       <Navbar
         className="shadow bg-white rounded"
         collapseOnSelect
+        bg=""
+        variant=""
         expand="lg"
-        bg="light"
-        variant="light"
         sticky="top"
       >
         <LinkContainer to="/">
-          <Navbar.Brand>
+          <Navbar.Brand className="nav-link">
             <img
               src="https://res.cloudinary.com/mhghy93/image/upload/v1609007211/IGN_Logo_jgedc0.png"
               width="45"
@@ -48,8 +48,11 @@ const NavigationBar = ({
             Game Reviews
           </Navbar.Brand>
         </LinkContainer>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
+
+        <Navbar.Toggle aria-controls="responsive-navbar-nav nav-link">
+          <i className="fas fa-bars"></i>
+        </Navbar.Toggle>
+        <Navbar.Collapse id="responsive-navbar-nav nav-link">
           <Navbar.Brand>
             <SearchBar />
           </Navbar.Brand>

@@ -27,7 +27,7 @@ const SearchBar = () => {
           name="keyword"
           onChange={handleOnChange}
         />
-        <Button type="submit" variant="outline-success">
+        <Button className="search-btn" type="submit" variant="outline-success">
           <i className="fas fa-search"></i>
         </Button>
       </Form>
