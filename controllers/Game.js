@@ -12,6 +12,19 @@ exports.getAllGames = async (req, res) => {
   }
 };
 
+exports.getLatestGames = async (req, res) => {
+  try {
+    const games = await Game.findAll({
+      order: [['createdAt', 'DESC']],
+      limit: 3,
+    });
+    res.json(games);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
+
 exports.getAllCategories = async (req, res) => {
   try {
     const allCategories = await Game.findAll({

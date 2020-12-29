@@ -6,6 +6,8 @@ const gameController = require('../controllers/Game');
 
 router.get('/all', gameController.getAllGames);
 
+router.get('/latest', gameController.getLatestGames);
+
 router.get('/categories/all', gameController.getAllCategories);
 
 router.get('/platforms/all', gameController.getAllPlatforms);
