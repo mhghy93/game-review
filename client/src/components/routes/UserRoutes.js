@@ -16,12 +16,14 @@ import EditReview from '../reviews/EditReview';
 import GamesByCategory from '../search/GamesByCategory';
 import GamesByPlatform from '../search/GamesByPlatform';
 import SearchGame from '../search/SearchGame';
+import LatestGames from '../games/LatestGames';
 
 const UserRoutes = () => {
   return (
     <BrowserRouter>
       <Fragment>
         <NavigationBar />
+        <LatestGames />
         <main className="mt-5">
           <Container>
             <ShowAlert />
