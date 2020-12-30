@@ -1,4 +1,19 @@
+html,
 body {
+  height: 100%;
+}
+
+/* Needed for fixed footer */
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Needed for fixed footer */
+body {
+  margin: 0;
+  padding: 0;
   background: #f9f9f9;
 }
 
@@ -80,7 +95,7 @@ body {
   height: 40vh;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   /* For mobile phones: */
   [class*='carousel-items'] {
     height: 30vh;
@@ -91,6 +106,12 @@ body {
   }
 }
 
+/* Needed for fixed footer */
+#page-content {
+  flex: 1 0 auto;
+}
+
+/* Needed for fixed footer */
 .sticky-footer {
   flex-shrink: none;
   background: #000000;

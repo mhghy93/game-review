@@ -24,7 +24,7 @@ const UserRoutes = () => {
     <BrowserRouter>
       <Fragment>
         <NavigationBar />
-        <main className="mt-5">
+        <main id="page-content" className="mt-5">
           <Container>
             <ShowAlert />
             <Switch>
