@@ -30,7 +30,9 @@ const PageNumbers = ({ totalPages, type, currentPage }) => {
           </LinkContainer>
         )}
 
-        {items}
+        {items[0]}
+
+        {items[1]}
 
         {Number(totalPages) > 2 ? (
           <Pagination.Ellipsis />
@@ -47,7 +49,14 @@ const PageNumbers = ({ totalPages, type, currentPage }) => {
         )}
 
         <LinkContainer to={`/games/?page=` + Number(totalPages)}>
-          <Pagination.Last />
+          {Number(currentPage) > 2 ? (
+            <Fragment>
+              {items[totalPages - 1]}
+              <Pagination.Last />
+            </Fragment>
+          ) : (
+            <Pagination.Last />
+          )}
         </LinkContainer>
       </Pagination>
     </Fragment>
