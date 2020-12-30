@@ -17,6 +17,7 @@ import GamesByCategory from '../search/GamesByCategory';
 import GamesByPlatform from '../search/GamesByPlatform';
 import SearchGame from '../search/SearchGame';
 import PaginatedGames from '../pagination/PaginatedGames';
+import Footer from '../layout/Footer';
 
 const UserRoutes = () => {
   return (
@@ -67,6 +68,7 @@ const UserRoutes = () => {
             </Switch>
           </Container>
         </main>
+        <Footer />
       </Fragment>
     </BrowserRouter>
   );

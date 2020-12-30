@@ -90,3 +90,9 @@ body {
     margin-top: 10px;
   }
 }
+
+.sticky-footer {
+  flex-shrink: none;
+  background: #000000;
+  color: #ffffff;
+}
