@@ -79,6 +79,13 @@ export const showAllGames = () => async (dispatch) => {
 };
 
 export const showGames = (pageParam) => async (dispatch) => {
+  if (typeof pageParam !== 'undefined') {
+    let correctPageNumber = Number(pageParam.split('=')[1]) - 1;
+    pageParam = '?page=' + correctPageNumber;
+  } else {
+    pageParam = '?page=0';
+  }
+
   try {
     const res = await axios.get(`/api/game/${pageParam}`);
 

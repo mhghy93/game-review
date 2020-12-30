@@ -16,6 +16,9 @@ import {
 
 const initialState = {
   games: [],
+  totalItems: '',
+  totalPages: '',
+  currentPage: '',
   latestGames: [],
   game: {},
   categories: [],
@@ -39,8 +42,16 @@ export default function (state = initialState, action) {
         latestGames: payload,
         loading: false,
       };
-    case SHOW_ALL_GAMES:
     case SHOW_GAMES:
+      return {
+        ...state,
+        games: payload.items,
+        totalItems: payload.totalItems,
+        totalPages: payload.totalPages,
+        currentPage: payload.currentPage,
+        loading: false,
+      };
+    case SHOW_ALL_GAMES:
     case SEARCH_GAMES:
     case SEARCH_GAMES_BY_CATEGORY:
     case SEARCH_GAMES_BY_PLATFORM:

@@ -16,6 +16,7 @@ import EditReview from '../reviews/EditReview';
 import GamesByCategory from '../search/GamesByCategory';
 import GamesByPlatform from '../search/GamesByPlatform';
 import SearchGame from '../search/SearchGame';
+import PaginatedGames from '../pagination/PaginatedGames';
 
 const UserRoutes = () => {
   return (
@@ -27,6 +28,7 @@ const UserRoutes = () => {
             <ShowAlert />
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/games" component={PaginatedGames} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/game/:id" component={GameDetail} />

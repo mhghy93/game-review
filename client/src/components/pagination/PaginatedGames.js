@@ -2,20 +2,22 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Row } from 'react-bootstrap';
-import GamesListItem from './GamesListItem';
+import GamesListItem from '../games/GamesListItem';
 import { showGames } from '../../actions/game';
 import { showAllReviews } from '../../actions/review';
-import PageNumbers from '../pagination/PageNumbers';
+import LatestGames from '../games/LatestGames';
+import PageNumbers from './PageNumbers';
 
 const Games = ({
+  location,
   game: { games, totalPages, currentPage },
   review: { allReviews },
   showGames,
   showAllReviews,
 }) => {
   useEffect(() => {
-    showGames();
-  }, [showGames]);
+    showGames(location.search);
+  }, [showGames, location.search]);
 
   useEffect(() => {
     showAllReviews();
@@ -23,6 +25,7 @@ const Games = ({
 
   return (
     <Fragment>
+      <LatestGames />
       {games.length > 0 ? (
         <Row className="mt-5">
           {games.map((game) => (
