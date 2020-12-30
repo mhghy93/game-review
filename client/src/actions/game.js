@@ -11,6 +11,7 @@ import {
   SHOW_GAME_DETAIL,
   DELETE_GAME,
   GAME_ERROR,
+  SHOW_GAMES,
 } from './types';
 import axios from 'axios';
 import { setAlert } from './alert';
@@ -67,6 +68,22 @@ export const showAllGames = () => async (dispatch) => {
 
     dispatch({
       type: SHOW_ALL_GAMES,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: GAME_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const showGames = (pageParam) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/game/${pageParam}`);
+
+    dispatch({
+      type: SHOW_GAMES,
       payload: res.data,
     });
   } catch (err) {

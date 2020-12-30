@@ -1,6 +1,7 @@
 import {
   ADD_GAME,
   SHOW_ALL_GAMES,
+  SHOW_GAMES,
   SHOW_LATEST_GAMES,
   SHOW_ALL_GAME_CATEGORIES,
   SHOW_ALL_GAME_PLATFORMS,
@@ -39,6 +40,7 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case SHOW_ALL_GAMES:
+    case SHOW_GAMES:
     case SEARCH_GAMES:
     case SEARCH_GAMES_BY_CATEGORY:
     case SEARCH_GAMES_BY_PLATFORM:
