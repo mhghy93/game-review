@@ -3,11 +3,11 @@ import { Fragment } from 'react';
 import { Pagination } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-const PageNumbers = ({ totalPages, type, currentPage }) => {
+const PageNumbers = ({ totalPages, type, currentPage, path }) => {
   let items = [];
   for (let number = 1; number <= Number(totalPages); number++) {
     items.push(
-      <LinkContainer key={number} to={`/games/?page=` + number}>
+      <LinkContainer key={number} to={path + number}>
         <Pagination.Item active={number === currentPage}>
           {number}
         </Pagination.Item>
@@ -18,14 +18,14 @@ const PageNumbers = ({ totalPages, type, currentPage }) => {
   return (
     <Fragment>
       <Pagination size={type}>
-        <LinkContainer to={`/games/?page=` + 1}>
+        <LinkContainer to={path + 1}>
           <Pagination.First />
         </LinkContainer>
 
         {Number(currentPage) === 1 ? (
           <Fragment></Fragment>
         ) : (
-          <LinkContainer to={`/games/?page=` + (Number(currentPage) - 1)}>
+          <LinkContainer to={path + (Number(currentPage) - 1)}>
             <Pagination.Prev />
           </LinkContainer>
         )}
@@ -47,12 +47,12 @@ const PageNumbers = ({ totalPages, type, currentPage }) => {
         {Number(currentPage) === Number(totalPages) ? (
           <Fragment></Fragment>
         ) : (
-          <LinkContainer to={`/games/?page=` + (Number(currentPage) + 1)}>
+          <LinkContainer to={path + (Number(currentPage) + 1)}>
             <Pagination.Next />
           </LinkContainer>
         )}
 
-        <LinkContainer to={`/games/?page=` + Number(totalPages)}>
+        <LinkContainer to={path + Number(totalPages)}>
           {Number(currentPage) > 2 ? (
             <Fragment>
               {items[totalPages - 1]}

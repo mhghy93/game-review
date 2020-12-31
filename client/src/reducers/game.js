@@ -43,6 +43,9 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case SHOW_GAMES:
+    case SEARCH_GAMES_BY_CATEGORY:
+    case SEARCH_GAMES:
+    case SEARCH_GAMES_BY_PLATFORM:
       return {
         ...state,
         games: payload.items,
@@ -52,9 +55,6 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case SHOW_ALL_GAMES:
-    case SEARCH_GAMES:
-    case SEARCH_GAMES_BY_CATEGORY:
-    case SEARCH_GAMES_BY_PLATFORM:
       return {
         ...state,
         games: payload,

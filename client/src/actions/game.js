@@ -118,6 +118,15 @@ export const showLatestGames = () => async (dispatch) => {
 };
 
 export const searchGames = (searchParam) => async (dispatch) => {
+  let pageParam = searchParam.split('&')[1];
+  if (typeof pageParam !== 'undefined') {
+    let correctPageNumber = Number(pageParam.split('=')[1]) - 1;
+    pageParam = '&page=' + correctPageNumber;
+    searchParam = searchParam.split('&')[0] + pageParam;
+  } else {
+    pageParam = '&page=0';
+    searchParam = searchParam.split('&')[0] + pageParam;
+  }
   try {
     const res = await axios.get(`/api/game/search/${searchParam}`);
 
@@ -134,6 +143,15 @@ export const searchGames = (searchParam) => async (dispatch) => {
 };
 
 export const searchGamesByCategory = (searchParam) => async (dispatch) => {
+  let pageParam = searchParam.split('&')[1];
+  if (typeof pageParam !== 'undefined') {
+    let correctPageNumber = Number(pageParam.split('=')[1]) - 1;
+    pageParam = '&page=' + correctPageNumber;
+    searchParam = searchParam.split('&')[0] + pageParam;
+  } else {
+    pageParam = '&page=0';
+    searchParam = searchParam.split('&')[0] + pageParam;
+  }
   try {
     const res = await axios.get(`/api/game/search/categories/${searchParam}`);
 
@@ -150,6 +168,15 @@ export const searchGamesByCategory = (searchParam) => async (dispatch) => {
 };
 
 export const searchGamesByPlatform = (searchParam) => async (dispatch) => {
+  let pageParam = searchParam.split('&')[1];
+  if (typeof pageParam !== 'undefined') {
+    let correctPageNumber = Number(pageParam.split('=')[1]) - 1;
+    pageParam = '&page=' + correctPageNumber;
+    searchParam = searchParam.split('&')[0] + pageParam;
+  } else {
+    pageParam = '&page=0';
+    searchParam = searchParam.split('&')[0] + pageParam;
+  }
   try {
     const res = await axios.get(`/api/game/search/platforms/${searchParam}`);
 

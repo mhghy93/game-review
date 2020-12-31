@@ -5,10 +5,11 @@ import { Row } from 'react-bootstrap';
 import GamesListItem from '../games/GamesListItem';
 import { searchGames } from '../../actions/game';
 import { showAllReviews } from '../../actions/review';
+import PageNumbers from '../pagination/PageNumbers';
 
 const SearchGame = ({
   location,
-  game: { games, loading },
+  game: { games, loading, totalPages, currentPage },
   review: { allReviews },
   searchGames,
   showAllReviews,
@@ -20,6 +21,8 @@ const SearchGame = ({
   useEffect(() => {
     showAllReviews();
   }, [showAllReviews]);
+
+  const path = location.search.split('&')[0] + '&page=';
 
   return (
     <Fragment>
@@ -44,6 +47,12 @@ const SearchGame = ({
           </Fragment>
         )}
       </Row>
+      <PageNumbers
+        totalPages={totalPages}
+        type="lg"
+        path={path}
+        currentPage={Number(currentPage) + 1}
+      />
     </Fragment>
   );
 };

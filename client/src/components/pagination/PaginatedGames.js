@@ -23,6 +23,8 @@ const Games = ({
     showAllReviews();
   }, [showAllReviews]);
 
+  const path = '/games/?page=';
+
   return (
     <Fragment>
       <LatestGames />
@@ -38,6 +40,7 @@ const Games = ({
       <PageNumbers
         totalPages={totalPages}
         type="lg"
+        path={path}
         currentPage={Number(currentPage) + 1}
       />
     </Fragment>
