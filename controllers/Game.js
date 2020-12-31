@@ -70,8 +70,10 @@ exports.getAllPlatforms = async (req, res) => {
 };
 
 exports.searchGames = async (req, res) => {
+  const { page, size } = req.query;
+  const { limit, offset } = getPagination(page, size);
   try {
-    const games = await Game.findAll({
+    const games = await Game.findAndCountAll({
       where: {
         [Op.or]: [
           { title: { [Op.like]: '%' + req.param('q') + '%' } },
@@ -79,8 +81,11 @@ exports.searchGames = async (req, res) => {
           { platform: { [Op.like]: '%' + req.param('q') + '%' } },
         ],
       },
+      limit,
+      offset,
     });
-    res.json(games);
+    const paginatedGames = getPagingData(games, page, limit);
+    res.json(paginatedGames);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
@@ -88,15 +93,20 @@ exports.searchGames = async (req, res) => {
 };
 
 exports.getGamesByCategory = async (req, res) => {
+  const { page, size } = req.query;
+  const { limit, offset } = getPagination(page, size);
   try {
-    const games = await Game.findAll({
+    const games = await Game.findAndCountAll({
       where: {
         category: {
           [Op.like]: '%' + req.param('category') + '%',
         },
       },
+      limit,
+      offset,
     });
-    res.json(games);
+    const paginatedGames = getPagingData(games, page, limit);
+    res.json(paginatedGames);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
@@ -104,15 +114,20 @@ exports.getGamesByCategory = async (req, res) => {
 };
 
 exports.getGamesByPlatform = async (req, res) => {
+  const { page, size } = req.query;
+  const { limit, offset } = getPagination(page, size);
   try {
-    const games = await Game.findAll({
+    const games = await Game.findAndCountAll({
       where: {
         platform: {
           [Op.like]: '%' + req.param('platform') + '%',
         },
       },
+      limit,
+      offset,
     });
-    res.json(games);
+    const paginatedGames = getPagingData(games, page, limit);
+    res.json(paginatedGames);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
