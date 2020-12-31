@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
+import Loading from '../layout/Loading';
 
 const ReviewItem = ({ review, profiles }) => {
   let index = 0;
@@ -42,7 +43,7 @@ const ReviewItem = ({ review, profiles }) => {
           {profiles.length > 0 ? (
             <p>{profiles[index].username}</p>
           ) : (
-            <p>Loading...</p>
+            <Loading />
           )}
         </Card.Subtitle>
         <Card.Body>

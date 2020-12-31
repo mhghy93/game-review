@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import Loading from '../layout/Loading';
 
 const AverageRating = ({ rating }) => {
   return (
@@ -14,7 +15,7 @@ const AverageRating = ({ rating }) => {
           {/* </p> */}
         </Fragment>
       ) : (
-        <p>Loading...</p>
+        <Loading />
       )}
     </Fragment>
   );

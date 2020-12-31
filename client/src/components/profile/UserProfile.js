@@ -9,9 +9,10 @@ import { showAllGames } from '../../actions/game';
 import UserReviewItem from './UserReviewItem';
 import UserRatingItem from './UserRatingItem';
 import DeleteProfile from './DeleteProfile';
+import Loading from '../layout/Loading';
 
 const UserProfile = ({
-  auth: { user },
+  auth: { user, loading },
   profile: { reviews },
   game: { games },
   loadUser,
@@ -35,61 +36,71 @@ const UserProfile = ({
 
   return (
     <Fragment>
-      <Card className="shadow bg-white rounded p-5 mb-5">
-        <Row>
-          <Col xs={12} lg={6}>
-            <Card.Img
-              src="https://res.cloudinary.com/mhghy93/image/upload/v1578161259/blank-profile-picture-973460_1280_xf4t0m.png"
-              variant="top"
-            />
-            <h5 className="mt-3">{user.username}</h5>
-            <LinkContainer to="/user/profile/edit">
-              <Button variant="success">
-                {' '}
-                <i className="fas fa-pencil-alt"></i> Edit Profile
-              </Button>
-            </LinkContainer>
-            <p className="mt-3">
-              Member since {new Date(user.createdAt).toLocaleDateString()}
-            </p>
-            <p className="mt-3">{reviews.length} games reviewed</p>
-            <div className="mt-5">
-              <h5 className="mb-3">My Ratings</h5>
-              {reviews.length > 0 ? (
-                <Row>
-                  {reviews.map((review) => (
-                    <UserRatingItem
+      {loading ? (
+        <Loading />
+      ) : (
+        <Fragment>
+          <Card className="shadow bg-white rounded p-5 mb-5">
+            <Row>
+              <Col xs={12} lg={6}>
+                <Card.Img
+                  src="https://res.cloudinary.com/mhghy93/image/upload/v1578161259/blank-profile-picture-973460_1280_xf4t0m.png"
+                  variant="top"
+                />
+                <h5 className="mt-3">{user.username}</h5>
+                <LinkContainer to="/user/profile/edit">
+                  <Button variant="success">
+                    {' '}
+                    <i className="fas fa-pencil-alt"></i> Edit Profile
+                  </Button>
+                </LinkContainer>
+                <p className="mt-3">
+                  Member since {new Date(user.createdAt).toLocaleDateString()}
+                </p>
+                <p className="mt-3">{reviews.length} games reviewed</p>
+                <div className="mt-5">
+                  <h5 className="mb-3">My Ratings</h5>
+                  {reviews.length > 0 ? (
+                    <Row>
+                      {reviews.map((review) => (
+                        <UserRatingItem
+                          key={review.id}
+                          review={review}
+                          games={games}
+                        />
+                      ))}
+                    </Row>
+                  ) : (
+                    <p>No Ratings</p>
+                  )}
+                  <Button
+                    className="mt-3"
+                    variant="danger"
+                    onClick={() => setModalShow(true)}
+                  >
+                    <i className="fas fa-trash-alt"></i> Delete Account
+                  </Button>
+                  <DeleteProfile show={modalShow} onHide={handleDeleteModal} />
+                </div>
+              </Col>
+              <Col xs={12} lg={6}>
+                <h5>My Reviews</h5>
+                {reviews.length > 0 ? (
+                  reviews.map((review) => (
+                    <UserReviewItem
                       key={review.id}
                       review={review}
                       games={games}
                     />
-                  ))}
-                </Row>
-              ) : (
-                <p>No Ratings</p>
-              )}
-              <Button
-                className="mt-3"
-                variant="danger"
-                onClick={() => setModalShow(true)}
-              >
-                <i className="fas fa-trash-alt"></i> Delete Account
-              </Button>
-              <DeleteProfile show={modalShow} onHide={handleDeleteModal} />
-            </div>
-          </Col>
-          <Col xs={12} lg={6}>
-            <h5>My Reviews</h5>
-            {reviews.length > 0 ? (
-              reviews.map((review) => (
-                <UserReviewItem key={review.id} review={review} games={games} />
-              ))
-            ) : (
-              <p>No Reviews added</p>
-            )}
-          </Col>
-        </Row>
-      </Card>
+                  ))
+                ) : (
+                  <p>No Reviews added</p>
+                )}
+              </Col>
+            </Row>
+          </Card>
+        </Fragment>
+      )}
     </Fragment>
   );
 };

@@ -22,7 +22,10 @@ const CategoryDropdown = ({ categories }) => {
           ))}
         </NavDropdown>
       ) : (
-        <p>Loading...</p>
+        <NavDropdown
+          title="Categories"
+          id="collasible-nav-dropdown"
+        ></NavDropdown>
       )}
     </Fragment>
   );

@@ -41,6 +41,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         user: payload,
+        loading: false,
       };
     case DELETE_USER_PROFILE:
     case REGISTER_FAIL:

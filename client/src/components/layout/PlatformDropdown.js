@@ -23,7 +23,10 @@ const PlatformDropdown = ({ platforms }) => {
           ))}
         </NavDropdown>
       ) : (
-        <p>Loading...</p>
+        <NavDropdown
+          title="Platforms"
+          id="collasible-nav-dropdown"
+        ></NavDropdown>
       )}
     </Fragment>
   );

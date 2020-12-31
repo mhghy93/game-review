@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Badge } from 'react-bootstrap';
+import Loading from '../layout/Loading';
 
 const GamePlatform = ({ platform }) => {
   return (
@@ -12,7 +13,7 @@ const GamePlatform = ({ platform }) => {
           </Badge>
         ))
       ) : (
-        <p>Loading....</p>
+        <Loading />
       )}
     </Fragment>
   );

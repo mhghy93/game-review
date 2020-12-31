@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Card, Col, Badge } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import AverageRating from '../reviews/AverageRating';
+import Loading from '../layout/Loading';
 
 const GamesListItem = ({ game, allReviews }) => {
   let averageRating = 0;
@@ -42,7 +43,7 @@ const GamesListItem = ({ game, allReviews }) => {
                   )}
                 </Fragment>
               ) : (
-                <p>Loading...</p>
+                <Loading />
               )}
             </div>
             <Card.Title>{game.title}</Card.Title>

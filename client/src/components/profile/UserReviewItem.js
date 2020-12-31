@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import DeleteReview from '../reviews/DeleteReview';
+import Loading from '../layout/Loading';
 
 const UserReviewItem = ({ review, games }) => {
   let index = 0;
@@ -46,7 +47,7 @@ const UserReviewItem = ({ review, games }) => {
           Reviewed on {new Date(review.createdAt).toLocaleDateString()}
         </Card.Subtitle>
         <Card.Subtitle className="ml-3 mt-2 text-muted">
-          {games.length > 0 ? <p>{games[index].title}</p> : <p>Loading...</p>}
+          {games.length > 0 ? <p>{games[index].title}</p> : <Loading />}
         </Card.Subtitle>
         <Card.Body>
           {showMore ? (

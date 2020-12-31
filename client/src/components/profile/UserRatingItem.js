@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Col } from 'react-bootstrap';
+import Loading from '../layout/Loading';
 
 const UserRatingItem = ({ review, games }) => {
   let index = 0;
@@ -25,7 +26,7 @@ const UserRatingItem = ({ review, games }) => {
                 src={games[index].displayPic}
               />
             ) : (
-              <p>Loading...</p>
+              <Loading />
             )}
           </Fragment>
           <Card.Body>
