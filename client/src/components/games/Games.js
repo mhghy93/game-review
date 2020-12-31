@@ -6,9 +6,10 @@ import GamesListItem from './GamesListItem';
 import { showGames } from '../../actions/game';
 import { showAllReviews } from '../../actions/review';
 import PageNumbers from '../pagination/PageNumbers';
+import Loading from '../layout/Loading';
 
 const Games = ({
-  game: { games, totalPages, currentPage },
+  game: { games, totalPages, currentPage, loading },
   review: { allReviews },
   showGames,
   showAllReviews,
@@ -25,21 +26,31 @@ const Games = ({
 
   return (
     <Fragment>
-      {games.length > 0 ? (
-        <Row className="mt-5">
-          {games.map((game) => (
-            <GamesListItem key={game.id} game={game} allReviews={allReviews} />
-          ))}
-        </Row>
+      {loading ? (
+        <Loading />
       ) : (
-        <p className="lead mt-5 text-center">No Games Found</p>
+        <Fragment>
+          {games.length > 0 ? (
+            <Row className="mt-5">
+              {games.map((game) => (
+                <GamesListItem
+                  key={game.id}
+                  game={game}
+                  allReviews={allReviews}
+                />
+              ))}
+            </Row>
+          ) : (
+            <p className="lead mt-5 text-center">No Games Found</p>
+          )}
+          <PageNumbers
+            totalPages={totalPages}
+            type="lg"
+            path={path}
+            currentPage={Number(currentPage) + 1}
+          />
+        </Fragment>
       )}
-      <PageNumbers
-        totalPages={totalPages}
-        type="lg"
-        path={path}
-        currentPage={Number(currentPage) + 1}
-      />
     </Fragment>
   );
 };

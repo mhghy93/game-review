@@ -64,16 +64,19 @@ export default function (state = initialState, action) {
       return {
         ...state,
         categories: payload,
+        loading: false,
       };
     case SHOW_ALL_GAME_PLATFORMS:
       return {
         ...state,
         platforms: payload,
+        loading: false,
       };
     case SHOW_GAME_DETAIL:
       return {
         ...state,
         game: payload,
+        loading: false,
       };
     case EDIT_GAME:
       return {
@@ -81,11 +84,13 @@ export default function (state = initialState, action) {
         games: state.games.map((game) =>
           game.id === payload.id ? payload : game
         ),
+        loading: false,
       };
     case DELETE_GAME:
       return {
         ...state,
         games: state.games.filter((game) => game.id !== payload),
+        loading: false,
       };
     case GAME_ERROR:
       return {

@@ -6,6 +6,7 @@ import GamesListItem from '../games/GamesListItem';
 import { searchGames } from '../../actions/game';
 import { showAllReviews } from '../../actions/review';
 import PageNumbers from '../pagination/PageNumbers';
+import Loading from '../layout/Loading';
 
 const SearchGame = ({
   location,
@@ -26,11 +27,11 @@ const SearchGame = ({
 
   return (
     <Fragment>
-      <Row>
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          <Fragment>
+      {loading ? (
+        <Loading />
+      ) : (
+        <Fragment>
+          <Row>
             {games.length > 0 ? (
               <Fragment>
                 {games.map((game) => (
@@ -44,15 +45,15 @@ const SearchGame = ({
             ) : (
               <p className="lead">No games found</p>
             )}
-          </Fragment>
-        )}
-      </Row>
-      <PageNumbers
-        totalPages={totalPages}
-        type="lg"
-        path={path}
-        currentPage={Number(currentPage) + 1}
-      />
+          </Row>
+          <PageNumbers
+            totalPages={totalPages}
+            type="lg"
+            path={path}
+            currentPage={Number(currentPage) + 1}
+          />
+        </Fragment>
+      )}
     </Fragment>
   );
 };

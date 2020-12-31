@@ -6,10 +6,11 @@ import GamesListItem from '../games/GamesListItem';
 import { searchGamesByCategory } from '../../actions/game';
 import { showAllReviews } from '../../actions/review';
 import PageNumbers from '../pagination/PageNumbers';
+import Loading from '../layout/Loading';
 
 const GamesByCategory = ({
   location,
-  game: { games, totalPages, currentPage },
+  game: { games, totalPages, currentPage, loading },
   review: { allReviews },
   searchGamesByCategory,
   showAllReviews,
@@ -26,27 +27,33 @@ const GamesByCategory = ({
 
   return (
     <Fragment>
-      <Row>
-        {games.length > 0 ? (
-          <Fragment>
-            {games.map((game) => (
-              <GamesListItem
-                key={game.id}
-                game={game}
-                allReviews={allReviews}
-              />
-            ))}
-          </Fragment>
-        ) : (
-          <p className="lead">No games found</p>
-        )}
-      </Row>
-      <PageNumbers
-        totalPages={totalPages}
-        type="lg"
-        path={path}
-        currentPage={Number(currentPage) + 1}
-      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <Fragment>
+          <Row>
+            {games.length > 0 ? (
+              <Fragment>
+                {games.map((game) => (
+                  <GamesListItem
+                    key={game.id}
+                    game={game}
+                    allReviews={allReviews}
+                  />
+                ))}
+              </Fragment>
+            ) : (
+              <p className="lead">No games found</p>
+            )}
+          </Row>
+          <PageNumbers
+            totalPages={totalPages}
+            type="lg"
+            path={path}
+            currentPage={Number(currentPage) + 1}
+          />
+        </Fragment>
+      )}
     </Fragment>
   );
 };
