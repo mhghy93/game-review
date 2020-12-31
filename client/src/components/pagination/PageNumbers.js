@@ -32,7 +32,11 @@ const PageNumbers = ({ totalPages, type, currentPage }) => {
 
         {items[0]}
 
-        {items[1]}
+        {Number(totalPages) > 1 ? (
+          <Fragment>{items[1]}</Fragment>
+        ) : (
+          <Fragment></Fragment>
+        )}
 
         {Number(totalPages) > 2 ? (
           <Pagination.Ellipsis />

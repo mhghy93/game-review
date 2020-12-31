@@ -35,7 +35,7 @@ const UserProfile = ({
 
   return (
     <Fragment>
-      <Card className="shadow bg-white rounded p-5">
+      <Card className="shadow bg-white rounded p-5 mb-5">
         <Row>
           <Col xs={12} lg={6}>
             <Card.Img
