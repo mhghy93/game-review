@@ -9,6 +9,7 @@ const AdminNavbar = ({ admin: { isAuthenticated }, adminLogout }) => {
   return (
     <Fragment>
       <Navbar
+        className="shadow bg-white rounded"
         collapseOnSelect
         expand="lg"
         bg="light"
@@ -16,10 +17,19 @@ const AdminNavbar = ({ admin: { isAuthenticated }, adminLogout }) => {
         sticky="top"
       >
         <LinkContainer to="/admin">
-          <Navbar.Brand>
+          <Navbar.Brand className="nav-link">
+            <img
+              src="https://res.cloudinary.com/mhghy93/image/upload/v1609007211/IGN_Logo_jgedc0.png"
+              width="45"
+              alt=""
+              className="d-inline-block align-middle mr-2"
+            />{' '}
+            Game Reviews Admin
+          </Navbar.Brand>
+          {/* <Navbar.Brand>
             {' '}
             <i className="fab fa-fantasy-flight-games"></i> Admin Game Reviews
-          </Navbar.Brand>
+          </Navbar.Brand> */}
         </LinkContainer>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

@@ -19,9 +19,7 @@ const AdminRoutes = () => {
   return (
     <BrowserRouter>
       <div className="d-flex" id="wrapper">
-        <div className="bg-light border-right" id="sidebar-wrapper">
-          <AdminSidebar />
-        </div>
+        <AdminSidebar />
         <div id="page-content-wrapper">
           <AdminNavbar />
           <Container>
