@@ -3,6 +3,7 @@ const Review = require('../models/Review');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { Op } = require('sequelize');
+const { getPagination, getPagingData } = require('../utils/pagination');
 
 exports.adminLogin = async (req, res) => {
   const { email, password } = req.body;
@@ -45,8 +46,10 @@ exports.adminLogin = async (req, res) => {
 };
 
 exports.showAllUsers = async (req, res) => {
+  const { page, size } = req.query;
+  const { limit, offset } = getPagination(page, size);
   try {
-    const users = await User.findAll({
+    const users = await User.findAndCountAll({
       attributes: [
         'id',
         'firstname',
@@ -57,8 +60,11 @@ exports.showAllUsers = async (req, res) => {
         'updatedAt',
       ],
       where: { isAdmin: false },
+      limit,
+      offset,
     });
-    res.json(users);
+    const paginatedUsers = getPagingData(users, page, limit);
+    res.json(paginatedUsers);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
