@@ -14,6 +14,7 @@ import NotFound from '../pages/NotFound';
 import AdminGameDetail from '../games/AdminGameDetail';
 import UserDetail from '../admin/UserDetail';
 import ShowAlert from '../layout/ShowAlert';
+import PaginatedAdminGames from '../pagination/PaginatedAdminGames';
 
 const AdminRoutes = () => {
   return (
@@ -40,6 +41,11 @@ const AdminRoutes = () => {
                 exact
                 path="/admin/show/games"
                 component={AdminShowGames}
+              />
+              <AdminPrivateRoute
+                exact
+                path="/admin/view/games"
+                component={PaginatedAdminGames}
               />
               <AdminPrivateRoute
                 exact

@@ -48,7 +48,6 @@ const AddGame = ({ addGame }) => {
 
   return (
     <div className="mt-3 mr-5 ml-5 mb-5">
-      <h5 className="text-center">Add Game</h5>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="title">
           <Form.Label>Game Title</Form.Label>
