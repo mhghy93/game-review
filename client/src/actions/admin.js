@@ -71,9 +71,16 @@ export const adminLogout = () => (dispatch) => {
   dispatch(setAlert('Successfully Logged Out', 'success'));
 };
 
-export const showUsers = () => async (dispatch) => {
+export const showUsers = (pageParam) => async (dispatch) => {
+  if (typeof pageParam !== 'undefined') {
+    let correctPageNumber = Number(pageParam.split('=')[1]) - 1;
+    pageParam = '?page=' + correctPageNumber;
+  } else {
+    pageParam = '?page=0';
+  }
+
   try {
-    const res = await axios.get('/api/admin/show/users');
+    const res = await axios.get(`/api/admin/show/users/${pageParam}`);
 
     dispatch({
       type: SHOW_ALL_USERS,

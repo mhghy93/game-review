@@ -14,6 +14,9 @@ import {
 
 const initialState = {
   users: [],
+  totalItems: '',
+  totalPages: '',
+  currentPage: '',
   user: {},
   reviews: [],
   token: localStorage.getItem('token'),
@@ -55,22 +58,29 @@ export default function (state = initialState, action) {
     case SHOW_ALL_USERS:
       return {
         ...state,
-        users: payload,
+        users: payload.items,
+        totalItems: payload.totalItems,
+        totalPages: payload.totalPages,
+        currentPage: payload.currentPage,
+        loading: false,
       };
     case SHOW_USER_DETAIL:
       return {
         ...state,
         user: payload,
+        loading: false,
       };
     case SHOW_USER_REVIEWS:
       return {
         ...state,
         reviews: payload,
+        loading: false,
       };
     case DELETE_USER_REVIEW:
       return {
         ...state,
         reviews: state.reviews.filter((review) => review.id !== payload),
+        loading: false,
       };
     case SHOW_USERS_ERROR:
       return {
@@ -82,6 +92,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         users: state.users.filter((user) => user.id !== payload),
+        loading: false,
       };
     default:
       return state;

@@ -2,18 +2,19 @@ import React, { useEffect, Fragment } from 'react';
 import { Table } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import UsersItem from './UsersItem';
+import UsersItem from '../admin/UsersItem';
 import { showUsers } from '../../actions/admin';
-import PageNumbers from '../pagination/PageNumbers';
+import PageNumbers from './PageNumbers';
 import Loading from '../layout/Loading';
 
-const ShowUsers = ({
+const PaginatedUsers = ({
+  location,
   admin: { users, totalPages, currentPage, loading },
   showUsers,
 }) => {
   useEffect(() => {
-    showUsers();
-  }, [showUsers]);
+    showUsers(location.search);
+  }, [showUsers, location.search]);
 
   const path = '/admin/view/users/?page=';
 
@@ -52,7 +53,7 @@ const ShowUsers = ({
   );
 };
 
-ShowUsers.propTypes = {
+PaginatedUsers.propTypes = {
   admin: PropTypes.object.isRequired,
   showUsers: PropTypes.func.isRequired,
 };
@@ -61,4 +62,4 @@ const mapStateToProps = (state) => ({
   admin: state.admin,
 });
 
-export default connect(mapStateToProps, { showUsers })(ShowUsers);
+export default connect(mapStateToProps, { showUsers })(PaginatedUsers);
