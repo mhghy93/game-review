@@ -22,7 +22,7 @@ const DashboardGameTable = ({
         <div className="mt-3">
           <Card.Body className="bg-success text-white">
             <h4>
-              <i className="fas fa-users"></i> Total Games {totalItems}
+              <i className="fas fa-gamepad"></i> Total Games {totalItems}
             </h4>
           </Card.Body>
           <Table striped bordered hover>
